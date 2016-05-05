@@ -15,6 +15,7 @@ void setup()
 
 void loop()
 {
+  int a = 0;
   /* Definir como ligar mp3 etc */
 }
 /* Funcao que liga e desliga mp3 */
