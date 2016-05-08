@@ -1,8 +1,18 @@
-int mpPin = 12;
-int voltPin = 11;
-int avancPin = 10;
-int val = 0;
-int playlist = 0
+#include <SPI.h>
+#include <RFID.h>
+ 
+#define SS_PIN 10
+#define RST_PIN 9
+ 
+RFID rfid(SS_PIN,RST_PIN);
+int serNum[5];
+ 
+int cards[][5] = {
+  {209,128,106,69,126}, // card 1
+  {101,220,213,229,137} // card 2
+};
+ 
+bool access = false;
 
 void setup()
 {
@@ -13,52 +23,46 @@ void setup()
   Serial.flush();
 }
 
+/* Função que le RFID e verifica se faz parte da
+matriz cards */
 void loop()
 {
-  /* Definir como ligar mp3 etc */
-}
-/* Funcao que liga e desliga mp3 */
-void MpOnOff()
-{
-  Serial.println("On / Off");
-  digitalWrite(mpPin, HIGH);
-  delay(5000);
-  digitalWrite(mpPin, LOW);
-  delay(100);
-}
+   
+  if(rfid.isCard()){
+  
+      if(rfid.readCardSerial()){
+          Serial.print(rfid.serNum[0]);
+          Serial.print(",");
+          Serial.print(rfid.serNum[1]);
+          Serial.print(",");
+          Serial.print(rfid.serNum[2]);
+          Serial.print(",");
+          Serial.print(rfid.serNum[3]);
+          Serial.print(",");
+          Serial.print(rfid.serNum[4]);
+          Serial.println("");
+          
+          for(int x = 0; x < sizeof(cards); x++){
+            for(int i = 0; i < sizeof(rfid.serNum); i++ ){
+                if(rfid.serNum[i] != cards[x][i]) {
+                    access = false;
+                    break;
+                } else {
+                    access = true;
+                }
+            }
+            if(access) break;
+          }
+         
+      }
+      
+     if(access){
+        Serial.println("Allowed!"); 
+     } else {
+         Serial.println("Not allowed!"); 
+     }        
+  }
+  
+  rfid.halt();
 
-/* Funcao que da play/pause mp3 */
-void MpPlayPause()
-{
-  Serial.println("Play / Pause");
-  digitalWrite(mpPin, HIGH);
-  delay(100);
-  digitalWrite(mpPin, LOW);
-  delay(100);
-}
-
-/* Funcao que avanca musica no mp3 */
-void MpForward()
-{
-  Serial.println("Avançar Musica");
-  digitalWrite(avancPin, HIGH);
-  delay(100);
-  digitalWrite(avancPin, LOW);
-  delay(100);
-  val += 1;
-}
-
-/* Funcao que retrocede musica no mp3 */
-void MpBackforward()
-{
-  Serial.println("Retroceder Musica");
-  digitalWrite(voltPin, HIGH);
-  delay(100);
-  digitalWrite(voltPin, LOW);
-  delay(100);
-  digitalWrite(voltPin, HIGH);
-  delay(100);
-  digitalWrite(avancPin, LOW);
-  delay(100);
-  val -= 1;
 }
