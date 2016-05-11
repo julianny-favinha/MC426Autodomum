@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+        <div class="card">
+          <div class="card-header text-xs-center">
+            <h4>Jardim</h4>
+          </div>
+          <div class="card-block">
+            <div class="card-text text-xs-center">
+                <weather-icon cloudiness="{{ weather.clouds }}"></weather-icon>
+                <h5 style="display:inline">{{today | date:'d MMM'}}, {{ weather.temp.current | temp:2 }}</h5    >
+                <p>min: {{ weather.temp.min | temp }}, max: {{ weather.temp.max | temp }}</p>
+            </div>
+            <ul class="list-group">
+              <li class="list-group-item">
+                <span class="label label-default label-pill pull-xs-right">neutro</span>
+                Acidez: pH 7
+              </li>
+              <li class="list-group-item">
+                <span class="label label-warning label-pill pull-xs-right">atenção!</span>
+                Adubado: Não
+              </li>
+              <li class="list-group-item">Umidade: 65%</li>
+            </ul>
+
+            <div fusioncharts
+                width="600" 
+                height="400"
+                type="msline"
+                chart="{{attrs}}"
+                categories="{{categories}}"
+                dataset="{{dataset}}"
+                ></div>
+
+          </div>
+        </div>
+    </div>
+</div>
