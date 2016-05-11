@@ -28,8 +28,11 @@
   <![endif]-->
 
   <nav ng-controller="IndexController" ng-hide="isLoginPage()" 
-       class="navbar navbar-fixed-top navbar-light bg-faded">
-    <center><img src="images/logo.png" style="width: 186px;"></center>
+       class="navbar navbar-fixed-top navbar-light bg-faded  text-xs-center">
+    <button class="navbar-toggler" type="button" style="float:left" ng-click="home()">
+      &#9776;
+    </button>
+    <img src="images/logo.png" style="width: 186px;">
   </nav>
 
   <div class="container" ng-view></div>
@@ -40,6 +43,7 @@
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/angular-ui-switch/angular-ui-switch.js"></script>
+  <script src="bower_components/jquery/dist/jquery.js"></script>
 
   <script src="app.js"></script>
   <script src="index.js"></script>

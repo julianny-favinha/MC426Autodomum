@@ -5,4 +5,8 @@ angular.module('autodomun.index', ['ngRoute'])
     $scope.isLoginPage = function() {
         return $location.path() == '/';
     }
+
+    $scope.home = function() {
+        $location.path('/home');
+    }
 });

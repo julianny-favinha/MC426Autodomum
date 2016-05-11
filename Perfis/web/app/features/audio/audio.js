@@ -10,7 +10,5 @@ angular.module('autodomun.audio', ['ngRoute'])
 }])
 
 .controller('AudioController', function($scope, $location) {
-    $scope.home = function() {
-        $location.path('/home');
-    }
+
 });
