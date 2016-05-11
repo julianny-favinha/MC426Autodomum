@@ -1,34 +1,54 @@
 /* app css stylesheet */
 
-.bg-primary {
-    color: #fff !important;
-    background-color: #F9A825 !important;
-}
-
-.btn-primary {
-    color: #373a3c;
-    background-color: #FDD835;
-    border-color: #FDD835;
-}
-
-.btn-primary,
-.btn-primary:hover,
-.btn-primary:active,
-.btn-primary:visited,
-.btn-primary:focus {
-    color: #373a3c;
-    background-color: #FDD835;
-    border-color: #FDD835;
-}
-
 body {
     background-color: #eee;
     padding-bottom: 40px;
     padding-top: 40px;
 }
+
 .container {
    padding-top: 60px; 
 }
+
+.bg-primary {
+    color: #fff !important;
+    background-color: #F9A825 !important;
+}
+
+/** Components **/
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary.focus,
+.btn-primary:active,
+.btn-primary.active,
+.open > .btn-primary.dropdown-toggle,
+.btn-primary:active:hover,
+.btn-primary:active:focus,
+.btn-primary:active.focus,
+.btn-primary.active:hover,
+.btn-primary.active:focus,
+.btn-primary.active.focus,
+.open > .btn-primary.dropdown-toggle:hover,
+.open > .btn-primary.dropdown-toggle:focus,
+.open > .btn-primary.dropdown-toggle.focus,
+.btn-primary.disabled:focus,
+.btn-primary.disabled.focus,
+.btn-primary:disabled:focus,
+.btn-primary:disabled.focus,
+.btn-primary.disabled:hover,
+.btn-primary:disabled:hover {
+    color: #373a3c;
+    background-color: #FDD835 !important;
+    border-color: #FDD835 !important;
+}
+
+.switch.checked {
+    background-color: #FDD835;
+    border-color: #FDD835;   
+}
+
+/** Login form **/
 .form-signin {
     margin: 0 auto;
     max-width: 330px;

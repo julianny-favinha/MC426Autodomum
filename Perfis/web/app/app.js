@@ -11,7 +11,9 @@ angular.module('autodomun', [
   'autodomun.clothes-line',
   'autodomun.services',
   'autodomun.components',
-  'autodomun.version'
+  'autodomun.version',
+
+  'uiSwitch'
 ])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/'});

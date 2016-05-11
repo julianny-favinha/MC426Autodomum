@@ -3,12 +3,13 @@
     <div class="col-lg-8">
         <div class="card">
           <div class="card-header text-xs-center">
-            <h4>Jardim</h4>
+            <h4 style="display: inline">Jardim</h4>
+            <switch id="enabled" name="enabled" ng-model="enabled" class="blue" style="float:right"></switch>
           </div>
           <div class="card-block">
             <div class="card-text text-xs-center">
                 <weather-icon cloudiness="{{ weather.clouds }}"></weather-icon>
-                <h5 style="display:inline">{{today | date:'d MMM'}}, {{ weather.temp.current | temp:2 }}</h5    >
+                <h5 style="display:inline">{{today | date:'d MMM'}}, {{ weather.temp.current | temp:2 }}</h5>
                 <p>min: {{ weather.temp.min | temp }}, max: {{ weather.temp.max | temp }}</p>
             </div>
             <ul class="list-group">
@@ -22,16 +23,6 @@
               </li>
               <li class="list-group-item">Umidade: 65%</li>
             </ul>
-
-            <div fusioncharts
-                width="600" 
-                height="400"
-                type="msline"
-                chart="{{attrs}}"
-                categories="{{categories}}"
-                dataset="{{dataset}}"
-                ></div>
-
           </div>
         </div>
     </div>

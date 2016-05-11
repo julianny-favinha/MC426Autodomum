@@ -1,1 +1,52 @@
-<h1>Olá</h1>
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+        <div class="card">
+          <div class="card-header text-xs-center">
+            <h4 style="display: inline">Varal</h4>
+            <switch id="enabled" name="enabled" ng-model="enabled" class="blue" style="float:right"></switch>
+          </div>
+          <div class="card-block">
+            <div class="card-text text-xs-center">
+                <weather-icon cloudiness="{{ weather.clouds }}"></weather-icon>
+                <h5 style="display:inline">{{today | date:'d MMM'}}, {{ weather.temp.current | temp:2 }}</h5>
+                <p>min: {{ weather.temp.min | temp }}, max: {{ weather.temp.max | temp }}</p>
+
+                <h5>Histórico da última semana</h5>
+                <p>Você protegeu suas roupas por 5h!!</p>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Estado</th>
+                      <th>Dia</th>
+                      <th>Horário</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Fechado</td>
+                      <td>07/05/2016</td>
+                      <td>09:30</td>
+                    </tr>
+                    <tr>
+                      <td>Aberto</td>
+                      <td>07/05/2016</td>
+                      <td>10:30</td>
+                    </tr>
+                    <tr>
+                      <td>Fechado</td>
+                      <td>09/05/2016</td>
+                      <td>13:00</td>
+                    </tr>
+                    <tr>
+                      <td>Fechado</td>
+                      <td>09/05/2016</td>
+                      <td>17:00</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
