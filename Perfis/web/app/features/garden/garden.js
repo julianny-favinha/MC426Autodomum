@@ -19,15 +19,10 @@ angular.module('autodomun.garden', ['ngRoute'])
     };
 })
 
-.controller('GardenController', function($scope, weatherService) {
+.controller('GardenController', function($scope, weatherService, $anchorScroll) {
     $scope.weather = weatherService.getWeather();
     $scope.today = new Date();
     $scope.active = true;
 
-    $scope.displayOnOff = function() {
-        if($scope.enabled) {
-            return "Ligado";
-        }
-        return "Desligado";
-    }
+    $anchorScroll();
 });

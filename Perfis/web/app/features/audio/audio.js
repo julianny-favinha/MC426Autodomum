@@ -9,6 +9,8 @@ angular.module('autodomun.audio', ['ngRoute'])
   });
 }])
 
-.controller('AudioController', function($scope, $location) {
+.controller('AudioController', function($scope, $location, $anchorScroll) {
     $scope.active = true;
+
+    $anchorScroll();
 });

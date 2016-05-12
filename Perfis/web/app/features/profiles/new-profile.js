@@ -9,8 +9,10 @@ angular.module('autodomun.profile.new', ['ngRoute'])
   });
 }])
 
-.controller('NewProfileController', function($scope, $location) {
+.controller('NewProfileController', function($scope, $location, $anchorScroll) {
     $scope.profiles = function() {
         $location.path('/profiles');
     }
+
+    $anchorScroll();
 });

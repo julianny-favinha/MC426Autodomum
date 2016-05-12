@@ -9,10 +9,12 @@ angular.module('autodomun.profile', ['ngRoute'])
   });
 }])
 
-.controller('ProfileController', function($scope, $location) {
+.controller('ProfileController', function($scope, $location, $anchorScroll) {
     $scope.admin = true;
     $scope.notification = true;
     $scope.garden = true;
     $scope.audio = true;
     $scope.clothesLine = true;
+
+    $anchorScroll();
 });

@@ -9,8 +9,9 @@ angular.module('autodomun.clothes-line', ['ngRoute'])
   });
 }])
 
-.controller('ClothesLineController', function($scope, weatherService) {
+.controller('ClothesLineController', function($scope, weatherService, $anchorScroll) {
     $scope.weather = weatherService.getWeather();
     $scope.today = new Date();
     $scope.active = true;
+    $anchorScroll();
 });

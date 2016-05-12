@@ -9,7 +9,7 @@ angular.module('autodomun.menu', ['ngRoute'])
   });
 }])
 
-.controller('View2Ctrl', function($scope, $location) {
+.controller('View2Ctrl', function($scope, $location, $anchorScroll) {
     $scope.garden = function() {
         $location.path("/garden");
     }
@@ -25,4 +25,6 @@ angular.module('autodomun.menu', ['ngRoute'])
     $scope.profiles = function() {
         $location.path("/profiles");
     }
+
+    $anchorScroll();
 });
