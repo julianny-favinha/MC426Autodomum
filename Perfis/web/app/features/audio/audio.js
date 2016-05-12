@@ -10,5 +10,5 @@ angular.module('autodomun.audio', ['ngRoute'])
 }])
 
 .controller('AudioController', function($scope, $location) {
-
+    $scope.active = true;
 });

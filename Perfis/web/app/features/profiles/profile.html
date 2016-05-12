@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+        <div class="card">
+          <div class="card-header text-xs-center">
+            <h4 style="display: inline">Usuário: Yellow</h4>
+            <span class="label label-warning label-pill pull-right" style="float: right">admin</span>
+          </div>
+          <div class="card-block">
+            <div class="card-text">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <p style="display: inline; position: relative; top: -5px;">admin</p>
+                  <switch id="enabled" name="enabled" ng-model="admin" class="blue" style="position: relative; top: 5px;"></switch>
+                </li>
+                <li class="list-group-item">
+                  Login: yellow
+                </li>
+                <li class="list-group-item">
+                  <h5>Permissões</h5>
+                  <input type="checkbox" ng-model="notification" /> <label>Receber notificações do sistema</label> <br/>
+                  <input type="checkbox" ng-model="garden" /> <label>Jardim</label> <br/>
+                  <input type="checkbox" ng-model="audio" /> <label>Áudio</label> <br/>
+                  <input type="checkbox" ng-model="clothesLine" /> <label>Varal</label> <br/>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

@@ -21,4 +21,8 @@ angular.module('autodomun.menu', ['ngRoute'])
     $scope.audio = function() {
         $location.path("/audio");
     }
+
+    $scope.profiles = function() {
+        $location.path("/profiles");
+    }
 });

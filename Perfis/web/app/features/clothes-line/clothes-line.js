@@ -12,4 +12,5 @@ angular.module('autodomun.clothes-line', ['ngRoute'])
 .controller('ClothesLineController', function($scope, weatherService) {
     $scope.weather = weatherService.getWeather();
     $scope.today = new Date();
+    $scope.active = true;
 });

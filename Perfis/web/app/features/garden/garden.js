@@ -22,6 +22,7 @@ angular.module('autodomun.garden', ['ngRoute'])
 .controller('GardenController', function($scope, weatherService) {
     $scope.weather = weatherService.getWeather();
     $scope.today = new Date();
+    $scope.active = true;
 
     $scope.displayOnOff = function() {
         if($scope.enabled) {
