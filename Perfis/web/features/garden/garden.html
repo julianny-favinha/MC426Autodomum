@@ -9,7 +9,7 @@
           <div class="card-block">
             <div class="card-text text-xs-center">
                 <weather-icon cloudiness="{{ weather.clouds }}"></weather-icon>
-                <h5 style="display:inline">{{today | date:'d MMM'}}, {{ weather.temp.current | temp:2 }}</h5>
+                <h5 style="display:inline">{{today | date:'d, MMMM'}}, {{ weather.temp.current | temp:2 }}</h5>
                 <p>min: {{ weather.temp.min | temp }}, max: {{ weather.temp.max | temp }}</p>
             </div>
             <ul class="list-group">

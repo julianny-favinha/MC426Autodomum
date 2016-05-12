@@ -15,6 +15,7 @@
     "angular-bootstrap": "~1.3.2",
     "angular-ui-switch": "~0.1.1",
     "jquery": "~2.2.3",
-    "font-awesome": "~4.6.2"
+    "font-awesome": "~4.6.2",
+    "angular-i18n": "1.5.6-build.4796+sha.eebbca0"
   }
 }
