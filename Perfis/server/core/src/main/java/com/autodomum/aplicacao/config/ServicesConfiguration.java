@@ -1,7 +1,9 @@
 package com.autodomum.aplicacao.config;
 
+import com.autodomum.dao.ToldoDao;
 import com.autodomum.dao.UsuarioDao;
 import com.autodomum.service.AuthenticationService;
+import com.autodomum.service.ToldoService;
 import com.autodomum.service.UsuarioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,12 @@ public class ServicesConfiguration {
     @Autowired
     UsuarioService usuarioService(UsuarioDao usuarioDao, AuthenticationService authenticationService) {
         return new UsuarioService(usuarioDao, authenticationService);
+    }
+
+    @Bean
+    @Autowired
+    ToldoService toldoService(ToldoDao toldoDao) {
+        return new ToldoService(toldoDao);
     }
 
 }

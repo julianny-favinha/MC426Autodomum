@@ -1,5 +1,6 @@
 package com.autodomum.aplicacao.config;
 
+import com.autodomum.dao.ToldoDao;
 import com.autodomum.dao.UsuarioDao;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,12 @@ public class DaosConfiguration {
     @Autowired
     public UsuarioDao usuarioDao(JdbcTemplate jdbcTemplate) {
         return new UsuarioDao(jdbcTemplate);
+    }
+
+    @Bean
+    @Autowired
+    public ToldoDao toldoDao(JdbcTemplate jdbcTemplate) {
+        return new ToldoDao(jdbcTemplate);
     }
 
 }

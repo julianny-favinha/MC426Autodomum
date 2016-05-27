@@ -1,6 +1,6 @@
 package com.autodomum.dao;
 
-import com.autodomum.dao.usuario.command.*;
+import com.autodomum.dao.command.usuario.*;
 import com.autodomum.modelo.Usuario;
 import com.autodomum.service.usuario.to.UsuarioTO;
 import org.springframework.jdbc.core.JdbcTemplate;

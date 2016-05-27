@@ -1,6 +1,6 @@
 package com.autodomum.test.database;
 
-import com.autodomum.dao.usuario.UsuarioDao;
+import com.autodomum.dao.UsuarioDao;
 import com.autodomum.modelo.Usuario;
 import com.autodomum.service.usuario.to.UsuarioTO;
 import org.junit.After;
