@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author sabrina on 26/05/16.
  */
 @RestController
-@RequestMapping(value = "/")
+@RequestMapping(value = "/api")
 public class AuthenticationController {
 
     @Autowired
