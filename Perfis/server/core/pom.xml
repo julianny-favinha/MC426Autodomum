@@ -131,6 +131,17 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>1.0.3</version>
+                <configuration>
+                    <appName>secure-bastion-88575</appName>
+                    <processTypes>
+                        <web>java $JAVA_OPTS -cp target/classes:target/dependency/* com.autodomum.aplicacao.server.Server</web>
+                    </processTypes>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
