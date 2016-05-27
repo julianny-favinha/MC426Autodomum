@@ -16,6 +16,8 @@
     "angular-ui-switch": "~0.1.1",
     "jquery": "~2.2.3",
     "font-awesome": "~4.6.2",
-    "angular-i18n": "1.5.6-build.4796+sha.eebbca0"
+    "angular-i18n": "1.5.6-build.4796+sha.eebbca0",
+    "angular-loading-bar": "0.9.0",
+    "angular-animate":"v1.5.6"
   }
 }

@@ -11,6 +11,7 @@ angular.module('autodomun.login', ['ngRoute'])
 
 .controller('View1Ctrl', function($scope, $location, $http) {
     $scope.login = function() {
+        console.log('k');
         $http({
             method: 'POST',
             url: '/api/login',
