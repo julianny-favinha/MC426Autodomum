@@ -1,5 +1,6 @@
 package com.autodomum.aplicacao.controller;
 
+import com.autodomum.service.usuario.AuthenticationService;
 import com.autodomum.service.usuario.UsuarioService;
 import com.autodomum.service.usuario.requests.TrocarSenhaRequest;
 import com.autodomum.service.usuario.results.DefaultResponse;
@@ -18,6 +19,9 @@ public class UsuarioController {
 
     @Autowired
     UsuarioService usuarioService;
+
+    @Autowired
+    AuthenticationService authenticationService;
 
     @RequestMapping(value = "/busca", method = RequestMethod.GET)
     public UsuarioTO buscar(@RequestParam("username") String username) {
@@ -39,6 +43,13 @@ public class UsuarioController {
     public DefaultResponse trocarSenha(@RequestBody TrocarSenhaRequest request) {
         boolean trocou = usuarioService.trocarSenha(request);
         return new DefaultResponse(trocou);
+    }
+
+    @RequestMapping(value = "/logado", method = RequestMethod.GET)
+    public UsuarioTO usuarioLogado(@CookieValue(AuthenticationService.AUTH_COOKIE) String authCookie) {
+        String username = authenticationService.getAuthenticatedUserUsername(authCookie);
+        return usuarioService.buscaPorUsername(username)
+                .orElseThrow(() -> new IllegalStateException("Usuario logado nao encontrado!"));
     }
 
 }

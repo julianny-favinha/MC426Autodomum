@@ -20,7 +20,7 @@ public class AuthenticationService {
         this.securityInfo = securityInfo;
     }
 
-    public String getAuthenticatedUserEmail(String token) {
+    public String getAuthenticatedUserUsername(String token) {
         Jws<Claims> claims = Jwts.parser().setSigningKey(securityInfo.getSignatureKey()).parseClaimsJws(token);
         return claims.getBody().getSubject();
     }
