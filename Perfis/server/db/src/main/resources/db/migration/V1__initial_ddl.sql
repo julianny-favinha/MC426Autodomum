@@ -8,7 +8,7 @@ CREATE TABLE usuario (
 CREATE TABLE permissao (
 	id SERIAL PRIMARY KEY,
 	nome TEXT,
-	sistema_externo TEXT
+	sistema TEXT
 );
 
 CREATE TABLE usuario_permissoes (

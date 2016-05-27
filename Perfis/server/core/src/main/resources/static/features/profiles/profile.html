@@ -14,7 +14,12 @@
                   <switch id="enabled" name="enabled" ng-model="admin" class="blue" style="position: relative; top: 5px;"></switch>
                 </li>
                 <li class="list-group-item">
-                  Login: yellow
+                  <label for="inputEmail" class="sr-only">Login</label>
+                  <input type="text" ng-model="user.username" id="inputEmail" class="form-control" placeholder="Login" required autofocus>
+                </li>
+                <li class="list-group-item">
+                  <label for="inputNome" class="sr-only">Nome</label>
+                  <input type="text" ng-model="user.nome" id="inputNome" class="form-control" placeholder="Login" required autofocus>
                 </li>
                 <li class="list-group-item">
                   <h5>Permissões</h5>
@@ -24,6 +29,10 @@
                   <input type="checkbox" ng-model="clothesLine" /> <label>Varal</label> <br/>
                 </li>
               </ul>
+            </div>
+            <div class="card-footer text-muted">
+              <a ng-click="save()" class="btn btn-primary">Salvar</a>
+              <a ng-click="back()" class="btn btn-secondary">Cancelar</a>
             </div>
           </div>
         </div>

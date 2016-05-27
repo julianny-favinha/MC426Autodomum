@@ -4,23 +4,20 @@
         <div class="card">
           <div class="card-header text-xs-center">
             <h4 style="display: inline; margin-left: 10px;">Usuários</h4>
-              <i class="fa fa-user-plus" aria-hidden="true" style="float: right; position: relative; top: 5px;" ng-click="new()"></i>
+              <i class="fa fa-user-plus" aria-hidden="true" style="float: right; position: relative; top: 5px;cursor:pointer" ng-click="new()"></i>
           </div>
           <div class="card-block">
             <div class="card-text">
               <div class="list-group">
-                <a ng-click="view()" class="list-group-item">
+                <a ng-repeat="user in users" ng-click="view(user)" class="list-group-item" style="cursor:pointer">
                   <span class="label label-warning label-pill pull-right">admin</span>
-                  Yellow
-                </a>
-                <a ng-click="view()" class="list-group-item">
-                  Rihanna
-                </a>
-                <a ng-click="view()" class="list-group-item">
-                  Mika
+                  {{user.nome}}
                 </a>
               </div>
             </div>
+          </div>
+          <div class="card-footer text-muted">
+            <a ng-click="back()" class="btn btn-secondary">Voltar</a>
           </div>
         </div>
     </div>
