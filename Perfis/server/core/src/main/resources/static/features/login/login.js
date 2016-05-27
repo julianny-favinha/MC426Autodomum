@@ -25,7 +25,7 @@ angular.module('autodomun.login', ['ngRoute'])
                 $location.path('/home');
             }
         }, function errorCallback(response) {
-            alert("Login inválido!");
+            $scope.error = true;
         });
     }
 });

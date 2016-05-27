@@ -9,7 +9,9 @@ angular.module('autodomun.menu', ['ngRoute'])
   });
 }])
 
-.controller('View2Ctrl', function($scope, $location, $anchorScroll) {
+.controller('View2Ctrl', function($scope, $location, $http, $anchorScroll) {
+    $scope.user;
+
     $scope.garden = function() {
         $location.path("/garden");
     }
@@ -27,4 +29,17 @@ angular.module('autodomun.menu', ['ngRoute'])
     }
 
     $anchorScroll();
+
+    $http({
+        method: 'GET',
+        url: '/api/usuario/logado',
+    }).then(function successCallback(response) {
+        if(response.status != 200) {
+            $scope.error = true;
+        } else {
+            $scope.user = response.data;
+        }
+    }, function errorCallback(response) {
+        $scope.error = true;
+    });
 });
