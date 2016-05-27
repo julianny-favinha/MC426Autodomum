@@ -1,10 +1,10 @@
 package com.autodomum.aplicacao.controller;
 
-import com.autodomum.service.usuario.AuthenticationService;
 import com.autodomum.modelo.Usuario;
-import com.autodomum.service.usuario.UsuarioService;
 import com.autodomum.service.usuario.results.DefaultResponse;
 import com.autodomum.service.usuario.results.LoginResult;
+import com.autodomum.service.AuthenticationService;
+import com.autodomum.service.UsuarioService;
 import com.autodomum.service.usuario.requests.LoginRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;

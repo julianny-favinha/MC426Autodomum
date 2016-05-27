@@ -1,4 +1,4 @@
-package com.autodomum.service.usuario;
+package com.autodomum.service;
 
 import com.autodomum.aplicacao.config.SecurityInfo;
 import io.jsonwebtoken.*;

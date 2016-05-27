@@ -1,8 +1,9 @@
 package com.autodomum.aplicacao.config;
 
-import com.autodomum.dao.usuario.UsuarioDao;
-import com.autodomum.service.usuario.AuthenticationService;
-import com.autodomum.service.usuario.UsuarioService;
+import com.autodomum.dao.UsuarioDao;
+import com.autodomum.service.AuthenticationService;
+import com.autodomum.service.UsuarioService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

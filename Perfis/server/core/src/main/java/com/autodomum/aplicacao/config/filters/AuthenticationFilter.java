@@ -1,11 +1,12 @@
 package com.autodomum.aplicacao.config.filters;
 
-import com.autodomum.service.usuario.AuthenticationService;
-
 import javax.servlet.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.autodomum.service.AuthenticationService;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Optional;

@@ -1,6 +1,6 @@
 package com.autodomum.dao.usuario.command;
 
-import com.autodomum.dao.usuario.UsuarioDao;
+import com.autodomum.dao.UsuarioDao;
 import com.autodomum.service.usuario.to.UsuarioTO;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;

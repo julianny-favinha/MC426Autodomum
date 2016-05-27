@@ -1,7 +1,8 @@
 package com.autodomum.aplicacao.config;
 
 import com.autodomum.aplicacao.config.filters.AuthenticationFilter;
-import com.autodomum.service.usuario.AuthenticationService;
+import com.autodomum.service.AuthenticationService;
+
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

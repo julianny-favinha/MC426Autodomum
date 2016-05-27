@@ -1,6 +1,6 @@
 package com.autodomum.aplicacao.config;
 
-import com.autodomum.dao.usuario.UsuarioDao;
+import com.autodomum.dao.UsuarioDao;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

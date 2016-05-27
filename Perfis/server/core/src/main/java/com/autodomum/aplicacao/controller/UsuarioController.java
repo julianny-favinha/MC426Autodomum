@@ -1,7 +1,7 @@
 package com.autodomum.aplicacao.controller;
 
-import com.autodomum.service.usuario.AuthenticationService;
-import com.autodomum.service.usuario.UsuarioService;
+import com.autodomum.service.AuthenticationService;
+import com.autodomum.service.UsuarioService;
 import com.autodomum.service.usuario.requests.TrocarSenhaRequest;
 import com.autodomum.service.usuario.results.DefaultResponse;
 import com.autodomum.service.usuario.to.UsuarioTO;

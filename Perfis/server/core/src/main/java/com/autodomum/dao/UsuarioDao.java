@@ -1,4 +1,4 @@
-package com.autodomum.dao.usuario;
+package com.autodomum.dao;
 
 import com.autodomum.dao.usuario.command.*;
 import com.autodomum.modelo.Usuario;

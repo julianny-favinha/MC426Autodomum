@@ -1,6 +1,6 @@
-package com.autodomum.service.usuario;
+package com.autodomum.service;
 
-import com.autodomum.dao.usuario.UsuarioDao;
+import com.autodomum.dao.UsuarioDao;
 import com.autodomum.modelo.Usuario;
 import com.autodomum.service.usuario.requests.LoginRequest;
 import com.autodomum.service.usuario.requests.TrocarSenhaRequest;
