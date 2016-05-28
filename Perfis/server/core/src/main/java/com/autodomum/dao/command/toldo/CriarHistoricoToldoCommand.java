@@ -29,7 +29,6 @@ public class CriarHistoricoToldoCommand implements Function<HistoricoToldo, Inte
         this.jdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
     }
 
-
     @Override
     public Integer apply(HistoricoToldo historicoToldo) {
         Date data = Date.from(historicoToldo.getData().atZone(ZoneId.systemDefault()).toInstant());
@@ -41,6 +40,7 @@ public class CriarHistoricoToldoCommand implements Function<HistoricoToldo, Inte
 
         SqlParameterSource source = new MapSqlParameterSource(parameters);
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        return jdbcTemplate.update(INSERT_HISTORICO_TOLDO, source, keyHolder);
+        jdbcTemplate.update(INSERT_HISTORICO_TOLDO, source, keyHolder, new String[] { "id" });
+        return keyHolder.getKey().intValue();
     }
 }
