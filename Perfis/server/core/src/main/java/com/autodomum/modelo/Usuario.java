@@ -1,5 +1,7 @@
 package com.autodomum.modelo;
 
+import java.util.List;
+
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -14,18 +16,25 @@ public class Usuario {
     private String nome;
     private String senha;
     private int rfid;
+    private List<Integer> permissoes;
 
     public Usuario() {
     }
 
-    public Usuario(String username, String nome, String senha, int rfid) {
-        this.username = username;
-        this.nome = nome;
-        this.senha = senha;
-        this.rfid = rfid;
-    }
 
-    public String getNome() {
+
+    public Usuario(String username, String nome, String senha, int rfid, List<Integer> permissoes) {
+		super();
+		this.username = username;
+		this.nome = nome;
+		this.senha = senha;
+		this.rfid = rfid;
+		this.permissoes = permissoes;
+	}
+
+
+
+	public String getNome() {
         return nome;
     }
 
@@ -49,11 +58,18 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public static class Builder {
+    public List<Integer> getPermissoes() {
+		return permissoes;
+	}
+
+
+
+	public static class Builder {
         private String username;
         private String nome;
         private String senha;
         private int rfid;
+        private List<Integer> permissoes;
 
         public Builder nome(String nome) {
             this.nome = nome;
@@ -74,9 +90,14 @@ public class Usuario {
             this.username = username;
             return this;
         }
+        
+        public Builder permissoes(List<Integer> permissoes) {
+        	this.permissoes = permissoes;
+        	return this;
+        }
 
         public Usuario build() {
-            return new Usuario(username, nome, senha, rfid);
+            return new Usuario(username, nome, senha, rfid, permissoes);
         }
     }
 }

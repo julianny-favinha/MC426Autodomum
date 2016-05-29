@@ -18,6 +18,10 @@ public class CriarUsuarioCommand implements Consumer<Usuario> {
             "INSERT INTO usuario " +
                     "(nome, senha, rfid, username)" +
                     " VALUES (:nome, :senha, :rfid, :username)";
+    private static String INSERT_USUARIO_PERMISSAO = 
+    		"INSERT INTO usuario_permissoes"
+    		+ "(username_usuario, id_permissao) "
+    		+ "VALUES (:username, :id)";
 
     private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -26,12 +30,19 @@ public class CriarUsuarioCommand implements Consumer<Usuario> {
     }
 
     public void accept(Usuario usuario) {
-        Map<String, Object> parameters = new HashMap();
-        parameters.put("nome", usuario.getNome());
-        parameters.put("senha", usuario.getSenha());
-        parameters.put("rfid", usuario.getRfid());
-        parameters.put("username", usuario.getUsername());
+        Map<String, Object> userParameters = new HashMap();
+        userParameters.put("nome", usuario.getNome());
+        userParameters.put("senha", usuario.getSenha());
+        userParameters.put("rfid", usuario.getRfid());
+        userParameters.put("username", usuario.getUsername());
 
-        jdbcTemplate.update(INSERT_USUARIO, parameters);
+        jdbcTemplate.update(INSERT_USUARIO, userParameters);
+
+        for (Integer i : usuario.getPermissoes()) {
+        	Map<String, Object> permissionParameters = new HashMap();
+        	permissionParameters.put("username", usuario.getUsername()); 
+        	permissionParameters.put("id", i);
+        	jdbcTemplate.update(INSERT_USUARIO_PERMISSAO, permissionParameters);
+        }
     }
 }

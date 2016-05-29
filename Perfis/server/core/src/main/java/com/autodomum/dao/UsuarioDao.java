@@ -31,8 +31,11 @@ public class UsuarioDao {
         new CriarUsuarioCommand(jdbcTemplate).accept(usuario);
     }
 
-    public Optional<UsuarioTO> buscaPorUsername(String username) {
-        return new BuscaUsuarioPorUsernameCommand(jdbcTemplate).apply(username);
+    public UsuarioTO buscaPorUsername(String username) {
+    	UsuarioTO user = new BuscaUsuarioPorUsernameCommand(jdbcTemplate).apply(username).get();
+    	if (user != null)
+    		user.setPermissoes(new BuscaPermissoesPorUsuario(jdbcTemplate).apply(username));
+        return user;
     }
 
     public Optional<String> buscaSenha(String username) {
