@@ -187,7 +187,7 @@
                 <configuration>
                     <appName>secure-bastion-88575</appName>
                     <processTypes>
-                        <web>java $JAVA_OPTS -cp target/classes:target/dependency/* com.autodomum.aplicacao.server.Server</web>
+                        <web>java $JAVA_OPTS -Dserver.port=$PORT -cp target/classes:target/dependency/* com.autodomum.aplicacao.server.Server</web>
                     </processTypes>
                 </configuration>
             </plugin>
