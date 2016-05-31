@@ -39,15 +39,15 @@ public class UsuarioDaoTest {
         Usuario esperado = usuarioDeTest().build();
         usuarioDao.criar(esperado);
 
-        UsuarioTO foo = usuarioDao.buscaPorUsername(esperado.getUsername());
-        assertThat(foo, is(true));
-        assertUsuario(esperado, foo);
+        Optional<UsuarioTO> foo = usuarioDao.buscaPorUsername(esperado.getUsername());
+        assertThat(foo.isPresent(), is(true));
+        assertUsuario(esperado, foo.get());
     }
 
     @Test
     public void buscaPorEmailQueNaoExiste() {
-        UsuarioTO foo = usuarioDao.buscaPorUsername("foobar");
-        assertThat(foo, is(false));
+        Optional<UsuarioTO> foo = usuarioDao.buscaPorUsername("foobar");
+        assertThat(foo.isPresent(), is(false));
     }
 
     @Test
@@ -79,11 +79,11 @@ public class UsuarioDaoTest {
                 .build();
         usuarioDao.editar(esperado);
 
-        UsuarioTO editado = usuarioDao.buscaPorUsername(esperado.getUsername());
-        assertThat(editado, is(true));
-        assertThat(editado.getUsername(), equalTo(esperado.getUsername()));
-        assertThat(editado.getNome(), equalTo(esperado.getNome()));
-        assertThat(editado.getRfid(), equalTo(esperado.getRfid()));
+        Optional<UsuarioTO> editado = usuarioDao.buscaPorUsername(esperado.getUsername());
+        assertThat(editado.isPresent(), is(true));
+        assertThat(editado.get().getUsername(), equalTo(esperado.getUsername()));
+        assertThat(editado.get().getNome(), equalTo(esperado.getNome()));
+        assertThat(editado.get().getRfid(), equalTo(esperado.getRfid()));
     }
 
     @Test

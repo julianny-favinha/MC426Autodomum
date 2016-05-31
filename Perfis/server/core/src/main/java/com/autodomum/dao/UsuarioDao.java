@@ -31,10 +31,10 @@ public class UsuarioDao {
         new CriarUsuarioCommand(jdbcTemplate).accept(usuario);
     }
 
-    public UsuarioTO buscaPorUsername(String username) {
-    	UsuarioTO user = new BuscaUsuarioPorUsernameCommand(jdbcTemplate).apply(username).get();
-    	if (user != null)
-    		user.setPermissoes(new BuscaPermissoesPorUsuario(jdbcTemplate).apply(username));
+    public Optional<UsuarioTO> buscaPorUsername(String username) {
+    	Optional<UsuarioTO> user = new BuscaUsuarioPorUsernameCommand(jdbcTemplate).apply(username);
+    	if (user.isPresent())
+    		user.get().setPermissoes(new BuscaPermissoesPorUsuario(jdbcTemplate).apply(username));
         return user;
     }
 

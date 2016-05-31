@@ -1,5 +1,6 @@
 package com.autodomum.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -19,22 +20,18 @@ public class Usuario {
     private List<Integer> permissoes;
 
     public Usuario() {
+        this.permissoes = new ArrayList<>();
     }
 
-
-
     public Usuario(String username, String nome, String senha, int rfid, List<Integer> permissoes) {
-		super();
-		this.username = username;
-		this.nome = nome;
-		this.senha = senha;
-		this.rfid = rfid;
-		this.permissoes = permissoes;
-	}
+        this.username = username;
+        this.nome = nome;
+        this.senha = senha;
+        this.rfid = rfid;
+        this.permissoes = permissoes;
+    }
 
-
-
-	public String getNome() {
+    public String getNome() {
         return nome;
     }
 
@@ -59,12 +56,10 @@ public class Usuario {
     }
 
     public List<Integer> getPermissoes() {
-		return permissoes;
-	}
+        return permissoes;
+    }
 
-
-
-	public static class Builder {
+    public static class Builder {
         private String username;
         private String nome;
         private String senha;
@@ -90,13 +85,16 @@ public class Usuario {
             this.username = username;
             return this;
         }
-        
+
         public Builder permissoes(List<Integer> permissoes) {
-        	this.permissoes = permissoes;
-        	return this;
+            this.permissoes = permissoes;
+            return this;
         }
 
         public Usuario build() {
+            if(permissoes == null) {
+                permissoes = new ArrayList<>();
+            }
             return new Usuario(username, nome, senha, rfid, permissoes);
         }
     }

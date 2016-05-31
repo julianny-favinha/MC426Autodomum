@@ -31,9 +31,7 @@ public class UsuarioService {
     }
 
     public Optional<UsuarioTO> buscaPorUsername(String username) {
-    	
-    	Optional<UsuarioTO> user = Optional.of(usuarioDao.buscaPorUsername(username)); 
-        return user;
+    	return usuarioDao.buscaPorUsername(username);
     }
 
     public LoginResult login(LoginRequest loginData) {
