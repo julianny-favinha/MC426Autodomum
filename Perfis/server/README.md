@@ -37,3 +37,5 @@ Para passar dados de outro banco, ou crie o seu properties ou execute o seguinte
 Para rodar os testes de integração que sobem um postgres embarcado use o comando
 
 ```mvn clean install -Pintegration-test```
+
+Se for rodar os testes pela IDE, rode APENAS a classe PostgresTestSuite.
