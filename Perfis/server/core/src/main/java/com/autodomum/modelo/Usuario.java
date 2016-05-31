@@ -20,7 +20,7 @@ public class Usuario {
     private List<Integer> permissoes;
 
     public Usuario() {
-        this.permissoes = new ArrayList<>();
+
     }
 
     public Usuario(String username, String nome, String senha, int rfid, List<Integer> permissoes) {

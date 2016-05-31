@@ -28,6 +28,10 @@ angular.module('autodomun.menu', ['ngRoute'])
         $location.path("/profiles");
     }
 
+    $scope.hasPermissao = function(permissaoId) {
+        return $scope.user.permissoes.indexOf(permissaoId) >= 0;
+    }
+
     $anchorScroll();
 
     $http({

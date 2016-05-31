@@ -40,6 +40,8 @@ public class PostgresTestSuite {
         ScriptUtils.executeSqlScript(conn, resource);
         resource = new ClassPathResource("/db/migration/V2__toldo.sql");
         ScriptUtils.executeSqlScript(conn, resource);
+        resource = new ClassPathResource("/db/migration/V3__permissao_insert.sql");
+        ScriptUtils.executeSqlScript(conn, resource);
     }
 
     @AfterClass

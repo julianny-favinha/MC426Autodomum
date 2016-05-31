@@ -9,15 +9,15 @@ public class Permissao {
 
 	private int id;
     private String nome;
-    private String sistema_externo;
+    private String sistemaExterno;
 
     public Permissao() {
     }
 
-    public Permissao(int id, String nome, String sistema_externo) {
+    public Permissao(int id, String nome, String sistemaExterno) {
         this.id = id;
         this.nome = nome;
-        this.sistema_externo = sistema_externo;
+        this.sistemaExterno = sistemaExterno;
     }
 
     public int getId() {
@@ -28,8 +28,8 @@ public class Permissao {
 		return nome;
 	}
 
-	public String getSistema_externo() {
-		return sistema_externo;
+	public String getSistemaExterno() {
+		return sistemaExterno;
 	}
 
 	public static Builder builder() {

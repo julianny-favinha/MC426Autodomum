@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-4"></div>
-    <div class="col-lg-4">
+    <div class="col-lg-5">
         <div class="card">
           <div class="card-header text-xs-center">
             <h4 style="display: inline">Novo usuário</h4>
@@ -11,8 +11,8 @@
                 <strong>Oh não!</strong> As senhas não batem.
               </div>
               <form  class="form-signin">
-                <p style="display: inline; position: relative; top: -22px;">admin</p>
-                <switch id="enabled" name="enabled" ng-model="admin" class="blue" style="position: relative; top: -12px;"></switch>
+                <p ng-if="false" style="display: inline; position: relative; top: -22px;">admin</p>
+                <switch ng-if="false" id="enabled" name="enabled" ng-model="admin" class="blue" style="position: relative; top: -12px;"></switch>
                 <br/>
 
                 <fieldset>
@@ -29,10 +29,9 @@
                 <br/>
                 
                 <h5>Permissões</h5>
-                <input type="checkbox" ng-model="user.notificacoes" /> <label>Receber notificações</label> <br/>
-                <input type="checkbox" ng-model="user.jardim" /> <label>Jardim</label> <br/>
-                <input type="checkbox" ng-model="user.audio" /> <label>Áudio</label> <br/>
-                <input type="checkbox" ng-model="user.varal" /> <label>Varal</label> <br/>
+                <div ng-repeat="permissao in permissoes">
+                  <input type="checkbox" ng-click="togglePermissao(permissao.id)" /> <label>{{permissao.nome}} (Sistema: {{permissao.sistemaExterno}})</label> <br/>
+                </div>
               </form>
             </div>
             <div class="card-footer text-muted">
