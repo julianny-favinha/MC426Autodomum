@@ -1,5 +1,6 @@
 package com.autodomum.aplicacao.config;
 
+import com.autodomum.aplicacao.queue.AutodomumQueue;
 import com.autodomum.dao.PermissaoDao;
 import com.autodomum.dao.ToldoDao;
 import com.autodomum.dao.UsuarioDao;
@@ -32,8 +33,8 @@ public class ServicesConfiguration {
 
     @Bean
     @Autowired
-    ToldoService toldoService(ToldoDao toldoDao) {
-        return new ToldoService(toldoDao);
+    ToldoService toldoService(ToldoDao toldoDao, AutodomumQueue queue) {
+        return new ToldoService(toldoDao, queue);
     }
 
     @Bean
