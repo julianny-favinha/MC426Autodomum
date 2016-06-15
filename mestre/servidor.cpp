@@ -9,6 +9,7 @@ EthernetClient client;                                  // Initialize the Ethern
 
 
 void Servidor::connect() {
+    Serial.println("connecting the ethernet shield...");
     // start the Ethernet connection:
     if (Ethernet.begin(mac) == 0) {
         Serial.println("Failed to configure Ethernet using DHCP");
@@ -40,6 +41,8 @@ String Servidor::request(String host, String endpoint) {
         // from the server, read them and print them:
         if (client.available()) {
             char c = client.read();
+
+            // we just receive simple json objects
             if(c == '{') {
                 read = true;
             }
@@ -54,10 +57,7 @@ String Servidor::request(String host, String endpoint) {
         }
     }
 
+    client.stop(); //TODO testar!
+
     return readString;
 }
-
-void Servidor::endRequest() {
-    client.stop();
-}
-
