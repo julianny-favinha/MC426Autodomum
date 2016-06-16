@@ -4,7 +4,7 @@
         <div class="card">
           <div class="card-header text-xs-center">
             <h4 style="display: inline; margin-left: 37px;">Varal</h4>
-            <switch id="enabled" name="enabled" ng-model="active" class="blue" style="float:right"></switch>
+            <switch id="enabled" name="enabled" ng-model="active" ng-change="changeAutomatico()" class="blue" style="float:right"></switch>
           </div>
           <div class="card-block">
             <div class="card-text text-xs-center">
@@ -45,8 +45,17 @@
                     </tr>
                   </tbody>
                 </table>
+                
             </div>
+           
+            Situacao do toldo<switch id="enabled" name="enabled" ng-change="changeToldo()" ng-model="inactive" class="blue" ></switch><br/>
+
+            
+
           </div>
+          <button class="btn btn-lg btn-primary" type="submit" ng-click="changeState()" style="float:right">Executar acao</button>
+          <div id="space" style="height: 71px;"></div>
+          
         </div>
     </div>
 </div>

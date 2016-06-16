@@ -9,9 +9,52 @@ angular.module('autodomun.clothes-line', ['ngRoute'])
   });
 }])
 
-.controller('ClothesLineController', function($scope, weatherService, $anchorScroll) {
+.controller('ClothesLineController', function($scope, weatherService, $http, $anchorScroll) {
+	$scope.toldo = [];
+	$scope.fechado = true;
+	$scope.automatico = true;
     $scope.weather = weatherService.getWeather();
     $scope.today = new Date();
     $scope.active = true;
     $anchorScroll();
+    $scope.changeToldo = function() {
+    	$scope.automatico = !($scope.automatico);
+    };
+    $scope.changeAutomatico = function() {
+    	$scope.fechado = !($scope.fechado);
+    };
+    $scope.changeState = function() {
+    	$http({
+            method: 'POST',
+            url: '/api/toldo/comando',
+            data: {
+            	estendido : $scope.fechado,
+            	automatico : $scope.automatico,
+            	toldo : 'VARAL'
+            }
+        }).then(function successCallback(response) {
+            if(response.status != 200) {
+                $scope.error = true;
+            } else {
+                
+            }
+        }, function errorCallback(response) {
+            $scope.error = true;
+        });
+    };
+    $http({
+        method: 'GET',
+        url: '/api/toldo/historico',
+        params: {
+            toldo : 'VARAL'
+        }
+    }).then(function successCallback(response) {
+        if(response.status != 200) {
+            $scope.error = true;
+        } else {
+            $scope.toldo = response.data;
+        }
+    }, function errorCallback(response) {
+        $scope.error = true;
+    });
 });
