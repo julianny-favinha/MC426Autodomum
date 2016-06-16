@@ -55,4 +55,8 @@ public class UsuarioDao {
     public void editarSenha(String username, String novaSenha) {
         new EditarSenhaDeUsuarioCommand(jdbcTemplate).accept(username, novaSenha);
     }
+
+    public Optional<Integer> buscaRfidSeTemPermissao(int rfid) {
+        return new BuscaRfidSeTemPermissaoCommand(jdbcTemplate).apply(rfid, 3); //FIXME
+    }
 }

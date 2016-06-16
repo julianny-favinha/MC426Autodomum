@@ -62,6 +62,10 @@ public class UsuarioService {
         return true;
     }
 
+    public boolean autenticaRfid(int rfid) {
+        return usuarioDao.buscaRfidSeTemPermissao(rfid).isPresent();
+    }
+
     private boolean validarSenha(String username, String senha) {
         Optional<String> hashedPwd = usuarioDao.buscaSenha(username);
 
