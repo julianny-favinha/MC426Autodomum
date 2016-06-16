@@ -13,8 +13,8 @@ import java.util.Collection;
  * @author sabrina on 13/06/16.
  */
 @RestController
-@RequestMapping("/casa/listening")
-public class CasaController {
+@RequestMapping("/casa/comando")
+public class ComandosController {
 
     @Autowired
     AutodomumQueue queue;

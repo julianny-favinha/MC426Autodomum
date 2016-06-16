@@ -1,14 +1,13 @@
 #include "processadorDeComandos.hpp"
 
-#define ESTENDER_TOLDO 0
-#define RECOLHER_TOLDO 1
-#define DESLIGA_OU_LIGA_TOLDO 2
-
 void ProcessadorDeComandos::executar(String json) {
   StaticJsonBuffer<200> jsonBuffer;
 
   JsonObject& root = jsonBuffer.parseObject(json);
   const char* func = root["funcionalidade"];
+
+  Serial.print("[Servidor] funcionalidade: ");
+  Serial.println(func);
   
   if(strcmp(func,"TOLDO") == 0) {
     tratarComandoDeToldo(root);

@@ -19,11 +19,6 @@ public class ToldoController {
     @Autowired
     private ToldoService toldoService;
 
-    @RequestMapping(value = "/historico", method = RequestMethod.POST)
-    public Integer criarHistorico(@RequestBody HistoricoToldo historicoToldo) {
-        return toldoService.criarHistorico(historicoToldo);
-    }
-
     @RequestMapping(value = "/historico", method = RequestMethod.GET)
     public List<HistoricoToldo> buscaHistorico(@RequestParam("toldo") Toldo toldo) {
         return toldoService.historicoToldo(toldo);

@@ -1,7 +1,6 @@
 #include <SPI.h>
 #include <string.h>
 #include <Wire.h>
-#include "servidor.hpp"
 #include "processadorDeComandos.hpp"
 
 //Informacoes para conectar no servidor
@@ -15,11 +14,11 @@
 //Vetor da conexão serial com o arduino do RFID
 int serNum[5];
 
-//Toldos conectados ao Arduino
-Toldo jardim("jardim", 8, 10, 9, 11);
-Toldo varal("varal", 4, 6, 5, 7);
-
 Servidor servidor;
+
+//Toldos conectados ao Arduino
+Toldo jardim("jardim", 8, 10, 9, 11, servidor);
+Toldo varal("varal", 4, 6, 5, 7, servidor);
 
 void setup() {
   // Open serial communications and wait for port to open:

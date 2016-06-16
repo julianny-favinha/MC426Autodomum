@@ -1,8 +1,7 @@
 #include <Arduino.h>
+#include <ctime>
 #include "toldo.hpp"
 
-//---( Number of steps per revolution of INTERNAL motor in 4-step mode )---
-#define STEPS_PER_MOTOR_REVOLUTION 32   
 //---( Steps per OUTPUT SHAFT of gear reduction )---
 #define steps2take 32 * 16  //1/4 de volta
 
@@ -20,13 +19,6 @@
 //Portas dos sensores
 #define SENSOR_CHUVA A0
 #define SENSOR_UMIDADE A1
-
-Toldo::Toldo(String type, int pin1, int pin2, int pin3, int pin4){
-  estendido = false;
-  automatico = true;
-  tipo = type;
-  motor = new Stepper(STEPS_PER_MOTOR_REVOLUTION, pin1, pin2, pin3, pin4);
-}
 
 void Toldo::recolhe() {
   
