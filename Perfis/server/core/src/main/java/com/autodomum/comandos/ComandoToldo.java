@@ -7,7 +7,9 @@ import com.autodomum.modelo.Toldo;
  */
 public class ComandoToldo extends Comando {
 
-    private EstadosToldo estado;
+    private boolean estendido;
+
+    private boolean automatico;
 
     private Toldo toldo;
 
@@ -15,8 +17,12 @@ public class ComandoToldo extends Comando {
         this.funcionalidade = Funcionalidade.TOLDO;
     }
 
-    public EstadosToldo getEstado() {
-        return estado;
+    public boolean getEstendido() {
+        return estendido;
+    }
+
+    public boolean isAutomatico() {
+        return automatico;
     }
 
     public Toldo getToldo() {

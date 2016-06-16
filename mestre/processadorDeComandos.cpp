@@ -16,28 +16,24 @@ void ProcessadorDeComandos::executar(String json) {
 }
 
 void ProcessadorDeComandos::tratarComandoDeToldo(JsonObject& root) {
-  int aberto = root["aberto"];
+  bool estendido = root["estendido"];
   bool automatico = root["automatico"];
   const char* toldo = root["toldo"];
 
   //DEBUG
-  printStatus(aberto, automatico, toldo);
+  printStatus(estendido, automatico, toldo);
 
-  switch(aberto){
-    case ESTENDER_TOLDO: {
-      if(strcmp(toldo,"VARAL") == 0) {
-        varal.estende();
-      } else {
-        jardim.estende();
-      }
+  if(estendido){
+    if(strcmp(toldo,"VARAL") == 0) {
+      varal.estende();
+    } else {
+      jardim.estende();
     }
-    break;
-    case RECOLHER_TOLDO: {
-      if(strcmp(toldo,"VARAL") == 0) {
-        varal.recolhe();
-      } else {
-        jardim.recolhe();
-      }
+  } else {
+    if(strcmp(toldo,"VARAL") == 0) {
+      varal.recolhe();
+    } else {
+      jardim.recolhe();
     }
   }
 
@@ -48,9 +44,9 @@ void ProcessadorDeComandos::tratarComandoDeToldo(JsonObject& root) {
   }
 }
 
-void ProcessadorDeComandos::printStatus(int aberto, bool automatico, String toldo) {
-  Serial.print("aberto: ");
-  Serial.println(aberto);
+void ProcessadorDeComandos::printStatus(int estendido, bool automatico, String toldo) {
+  Serial.print("estendido: ");
+  Serial.println(estendido);
   Serial.print("automatico: ");
   Serial.println(automatico);
   Serial.print("toldo: ");
