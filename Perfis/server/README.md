@@ -39,3 +39,10 @@ Para rodar os testes de integração que sobem um postgres embarcado use o coman
 ```mvn clean install -Pintegration-test```
 
 Se for rodar os testes pela IDE, rode APENAS a classe PostgresTestSuite.
+
+## Colocar no Heroku
+Para subir sua versão no heroku, basta executar o seguinte comando do maven:
+
+```mvn clean heroku:deploy```
+
+Caso tenha algum problema para subir sua versão, é possível que o problema seja de permissão, nesse caso, crie uma conta no Heroku e peça permissão para o dono da app do heroku.
