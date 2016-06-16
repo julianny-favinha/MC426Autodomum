@@ -4,6 +4,7 @@ import com.autodomum.comandos.ComandoToldo;
 import com.autodomum.modelo.HistoricoToldo;
 import com.autodomum.modelo.Toldo;
 import com.autodomum.service.ToldoService;
+import com.autodomum.service.usuario.results.DefaultResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,9 +26,9 @@ public class ToldoController {
     }
 
     @RequestMapping(value = "/comando", method = RequestMethod.POST)
-    public String comandarToldo(@RequestBody ComandoToldo comando) {
+    public DefaultResponse comandarToldo(@RequestBody ComandoToldo comando) {
         toldoService.enviarComando(comando);
-        return "Request done!";
+        return new DefaultResponse(true);
     }
 
 }

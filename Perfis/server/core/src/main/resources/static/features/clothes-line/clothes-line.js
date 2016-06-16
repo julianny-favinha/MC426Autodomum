@@ -9,7 +9,7 @@ angular.module('autodomun.clothes-line', ['ngRoute'])
   });
 }])
 
-.controller('ClothesLineController', function($scope, weatherService, $http, $anchorScroll) {
+.controller('ClothesLineController', function($scope, weatherService, $http, $anchorScroll, $location) {
 	$scope.toldo = [];
 	$scope.fechado = true;
 	$scope.automatico = true;
@@ -24,6 +24,8 @@ angular.module('autodomun.clothes-line', ['ngRoute'])
     	$scope.fechado = !($scope.fechado);
     };
     $scope.changeState = function() {
+        console.log($scope.fechado);
+        console.log($scope.automatico);
     	$http({
             method: 'POST',
             url: '/api/toldo/comando',
@@ -41,6 +43,8 @@ angular.module('autodomun.clothes-line', ['ngRoute'])
         }, function errorCallback(response) {
             $scope.error = true;
         });
+
+        $location.path('/home');
     };
     $http({
         method: 'GET',
