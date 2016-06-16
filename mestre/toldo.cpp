@@ -1,4 +1,3 @@
-#include <Stepper.h>
 #include <Arduino.h>
 #include "toldo.hpp"
 
@@ -22,18 +21,15 @@
 #define SENSOR_CHUVA A0
 #define SENSOR_UMIDADE A1
 
-bool estendido = false;
-bool automatico = true;
-String tipo;
-Stepper *motor;
-
 Toldo::Toldo(String type, int pin1, int pin2, int pin3, int pin4){
+  estendido = false;
+  automatico = true;
   tipo = type;
-	Stepper m(STEPS_PER_MOTOR_REVOLUTION, pin1, pin2, pin3, pin4);
-  motor = &m;
+  motor = new Stepper(STEPS_PER_MOTOR_REVOLUTION, pin1, pin2, pin3, pin4);
 }
 
 void Toldo::recolhe() {
+  
 	if (estendido){
 		(*motor).setSpeed(500);
 		(*motor).step(-steps2take);

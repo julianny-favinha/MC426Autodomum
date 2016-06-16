@@ -1,10 +1,8 @@
 #include <SPI.h>
 #include <string.h>
 #include <Wire.h>
-#include "toldo.hpp"
 #include "servidor.hpp"
 #include "processadorDeComandos.hpp"
-#include "sensorDeChuva.hpp"
 
 //Informacoes para conectar no servidor
 #define HOST "secure-bastion-88575.herokuapp.com"
@@ -55,10 +53,10 @@ void loop() {
 }
 
 void recebeComandosExternos() {
-  ProcessadorDeComandos processadorDeComandos;
+  ProcessadorDeComandos processadorDeComandos(varal, jardim);
 
   String readString = servidor.request(HOST, COMMAND_ENDPOINT);
-  processadorDeComandos.executar(readString);  
+  processadorDeComandos.executar(readString);
 }
 
 void printStats(){  
