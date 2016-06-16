@@ -34,7 +34,6 @@ void setup() {
 
   Serial.println("Ending setup...");
 
-  varal.setAutomatico(false);
 }
 
 void receiveEvent(int bytes) {
