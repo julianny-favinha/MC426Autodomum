@@ -50,5 +50,6 @@ void ProcessadorDeComandos::printStatus(int estendido, bool automatico, String t
   Serial.println(automatico);
   Serial.print("toldo: ");
   Serial.println(toldo);
+  Serial.println("**********************");
 }
 

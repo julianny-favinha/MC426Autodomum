@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include <ctime>
 #include "toldo.hpp"
 
 //---( Steps per OUTPUT SHAFT of gear reduction )---
@@ -20,6 +19,8 @@
 #define SENSOR_CHUVA A0
 #define SENSOR_UMIDADE A1
 
+#define HOSTORICO_TOLDO_ENDPOINT "/toldo/historico"
+
 void Toldo::recolhe() {
   
 	if (estendido){
@@ -27,15 +28,18 @@ void Toldo::recolhe() {
 		(*motor).step(-steps2take);
 		estendido = false;
 		delay(2000);
+    registrarHistorico();
 	}
 }
 
 void Toldo::estende() {
+  
 	if (!estendido){
 		(*motor).setSpeed(500);
 		(*motor).step(steps2take);
 		estendido = true;
 		delay(2000);
+    registrarHistorico();
 	}
 }
 
@@ -49,8 +53,8 @@ void Toldo::setAutomatico(bool a){
 
 void Toldo::checa(){
   if (automatico){
-    if (tipo == "varal") checaVaral();
-    else if (tipo == "jardim") checaJardim();
+    if (tipo == "VARAL") checaVaral();
+    else if (tipo == "JARDIM") checaJardim();
   }
 }
 
@@ -88,5 +92,22 @@ void Toldo::checaJardim(){
   } else if(umidade <= UMIDADE_MIN){ // Solo seco
     recolhe();
   }
+}
+
+void Toldo::registrarHistorico() {
+  String data = "{\"fechado\" : ";
+  if(estendido) {
+    data.concat("\"false\"");
+  } else {
+    data.concat("\"true\"");
+  }
+  data.concat(", \"toldo\" : \"");
+  data.concat(tipo);
+  data.concat("\"}");
+
+  Serial.print("Sending: ");
+  Serial.println(data);
+
+  servidor.post(HOSTORICO_TOLDO_ENDPOINT, data);
 }
 

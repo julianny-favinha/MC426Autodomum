@@ -5,7 +5,7 @@
 
 //Informacoes para conectar no servidor
 #define HOST "secure-bastion-88575.herokuapp.com"
-#define COMMAND_ENDPOINT "/casa/listening"
+#define COMMAND_ENDPOINT "/casa/comando"
 
 //Portas dos sensores
 #define SENSOR_CHUVA A0
@@ -14,11 +14,11 @@
 //Vetor da conexão serial com o arduino do RFID
 int serNum[5];
 
-Servidor servidor;
+Servidor servidor(HOST);
 
 //Toldos conectados ao Arduino
-Toldo jardim("jardim", 8, 10, 9, 11, servidor);
-Toldo varal("varal", 4, 6, 5, 7, servidor);
+Toldo jardim("JARDIM", 8, 10, 9, 11, servidor);
+Toldo varal("VARAL", 4, 6, 5, 7, servidor);
 
 void setup() {
   // Open serial communications and wait for port to open:
@@ -31,6 +31,10 @@ void setup() {
   // Inicia a conexão I2C BUS como escravo pelo endereço 9
   Wire.begin(9);
   Wire.onReceive(receiveEvent);
+
+  Serial.println("Ending setup...");
+
+  varal.setAutomatico(false);
 }
 
 void receiveEvent(int bytes) {
@@ -54,7 +58,7 @@ void loop() {
 void recebeComandosExternos() {
   ProcessadorDeComandos processadorDeComandos(varal, jardim);
 
-  String readString = servidor.request(HOST, COMMAND_ENDPOINT);
+  String readString = servidor.get(COMMAND_ENDPOINT);
   processadorDeComandos.executar(readString);
 }
 

@@ -14,6 +14,7 @@ public class HistoricoToldo {
     private Toldo toldo;
 
     public HistoricoToldo() {
+        data = LocalDateTime.now();
     }
 
     public HistoricoToldo(boolean fechado, LocalDateTime data, Toldo toldo) {

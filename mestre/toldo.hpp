@@ -25,4 +25,5 @@ class Toldo {
         Servidor& servidor;
         void checaJardim();
         void checaVaral();
+        void registrarHistorico();
 };

@@ -2,6 +2,7 @@ package com.autodomum.aplicacao.controller;
 
 import com.autodomum.modelo.HistoricoToldo;
 import com.autodomum.service.ToldoService;
+import com.autodomum.service.usuario.results.DefaultResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +20,9 @@ public class ToldoArduinoController {
     private ToldoService toldoService;
 
     @RequestMapping(value = "/historico", method = RequestMethod.POST)
-    public Integer criarHistorico(@RequestBody HistoricoToldo historicoToldo) {
-        return toldoService.criarHistorico(historicoToldo);
+    public DefaultResponse criarHistorico(@RequestBody HistoricoToldo historicoToldo) {
+        toldoService.criarHistorico(historicoToldo);
+        return new DefaultResponse(true);
     }
 
 }

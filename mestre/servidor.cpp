@@ -20,9 +20,7 @@ void Servidor::connect() {
     delay(1000);
 }
 
-String Servidor::request(String host, String endpoint) {  
-    String readString = String();
-
+String Servidor::get(String endpoint) {  
     // if you get a connection, report back via serial:
     if (client.connect(server, 80)) {
         // Make a HTTP request:
@@ -34,6 +32,39 @@ String Servidor::request(String host, String endpoint) {
         // if you didn't get a connection to the server:
         Serial.println("connection failed");
     }
+
+    String readString = readResult();
+
+    client.stop(); //TODO testar!
+
+    return readString;
+}
+
+String Servidor::post(String endpoint, String data) {  
+    // if you get a connection, report back via serial:
+    if (client.connect(server, 80)) {
+        // Make a HTTP request:
+        client.println("POST " + endpoint + " HTTP/1.1");
+        client.println("Host: " + host);
+        client.println("Content-Type: application/json");
+        client.print("Content-Length: ");
+        client.println(data.length());
+        client.println();
+        client.print(data);
+    } else {
+        // if you didn't get a connection to the server:
+        Serial.println("connection failed");
+    }
+
+    String readString = readResult();
+
+    client.stop(); //TODO testar!
+
+    return readString;
+}
+
+String Servidor::readResult() {
+    String readString = String();
 
     bool read = false;
     while(client.connected()) {
@@ -57,7 +88,6 @@ String Servidor::request(String host, String endpoint) {
         }
     }
 
-    client.stop(); //TODO testar!
-
-    return readString;
+   return readString;
 }
+
