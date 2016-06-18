@@ -2,18 +2,25 @@ var audio = new Audio();
 var num;
 var queue = new Array();
 var queuename = new Array();
+var flag = 1;
 
 window.onload = function start(){
 	listen();
 }
 
 audio.addEventListener('ended', function(){
-	next();	
+	if (!flag){
+		flag = 1;
+	} else {
+		next();	
+	}
 });
 
 function listen(){
-	var artist = 'radiohead';
-	search(artist);
+	if (flag){
+		var artist = 'radiohead';
+		search(artist);
+	
 /*	$.ajax({
 		url: '',
 		sucess: function(response) {
@@ -31,6 +38,8 @@ function listen(){
 		}	
 	});
 LEITURA DE LISTA DE COMANDOS...*/ 
+	}
+	setTimeout(listen, 10000);
 }
 
 function getArtistID(query){
