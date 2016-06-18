@@ -2,7 +2,6 @@ var audio = new Audio();
 var num;
 var queue = new Array();
 var queuename = new Array();
-var queuealbum = new Array();
 
 window.onload = function start(){
 	listen();
@@ -57,7 +56,6 @@ function getTracksByArtist(id){
 			for (var track in response.tracks){
 				queue.push(response.tracks[track].preview_url);
 				queuename.push(response.tracks[track].name);
-				queuealbum.push(response.tracks[track].album.images[1].url);
 			}
 			play(Math.floor((Math.random()*10)));
 		}
