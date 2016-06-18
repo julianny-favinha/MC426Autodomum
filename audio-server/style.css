@@ -14,6 +14,4 @@ body {
     font-size: 16px;
     line-height: 1.3em;
     display: flex;
-    min-height: 100vh;
-    flex-direction: column;
 }

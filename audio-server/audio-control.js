@@ -1,6 +1,8 @@
 var audio = new Audio();
-var queue = new Array();
 var num;
+var queue = new Array();
+var queuename = new Array();
+var queuealbum = new Array();
 
 window.onload = function start(){
 	listen();
@@ -10,8 +12,10 @@ audio.addEventListener('ended', function(){
 	next();	
 });
 
-function listen() {
-	$.ajax({
+function listen(){
+	var artist = 'radiohead';
+	search(artist);
+/*	$.ajax({
 		url: '',
 		sucess: function(response) {
 			switch(response.function) {
@@ -27,7 +31,7 @@ function listen() {
 			}
 		}	
 	});
-	setTimeout(listen, 2000);
+LEITURA DE LISTA DE COMANDOS...*/ 
 }
 
 function getArtistID(query){
@@ -38,8 +42,7 @@ function getArtistID(query){
 			type: 'artist'			
 		},
 		success: function(response) {
-			var idArtist = response.artist.items[0];
-			getTracksByArtist(idArtist);		
+			getTracksByArtist(response.artists.items[0].id);
 		}
 	});	
 }
@@ -47,29 +50,34 @@ function getArtistID(query){
 function getTracksByArtist(id){
 	$.ajax({
 		url: 'https://api.spotify.com/v1/artists/'+id+'/top-tracks',
+		data: {
+			country: 'BR'
+		},
 		success: function(response) {
-			if (response.tracks.items.length) {				
-				for (var track in response.tracks.items){
-					queue.push(track);				
-				}
-			}		
+			for (var track in response.tracks){
+				queue.push(response.tracks[track].preview_url);
+				queuename.push(response.tracks[track].name);
+				queuealbum.push(response.tracks[track].album.images[1].url);
+			}
+			play(Math.floor((Math.random()*10)));
 		}
 	});	
 }
 
-function play(artistName){
-	getArtistID(response.artist);
-	num = Math.floor((Math.random()*10));
-	audio.src(queue[num]);
+function search(artistName){
+	getArtistID(artistName);
+}
+
+function play(num){
+	audio.src = queue[num];
 	audio.play();
 	var rec = document.getElementById('play');
-	rec.innerHTML = 'Now Playing...'
+	rec.innerHTML = 'Musica: '+queuename[num];
 }
 
 function next(artistName){
 	if(artistName){
-		getArtistID(response.artist);
-		num = Math.floor((Math.random()*10));
+		getArtistID(artistName);
 	}
 	else {
 		if (num < 9){		
@@ -77,13 +85,15 @@ function next(artistName){
 		} else {
 			num = 0;
 		}
+		audio.src = queue[num];
+		audio.play();
+		var rec = document.getElementById('play');
+		rec.innerHTML = 'Musica: '+queuename[num];
 	}
-	audio.src(queue[num]);
-	audio.play();
-	var rec = document.getElementById('play');
-	rec.innerHTML = 'Now Playing...'
 }
 
 function stop(){
 	audio.pause();
+	var rec = document.getElementById('play');
+	rec.innerHTML = 'Desligado...'
 }
