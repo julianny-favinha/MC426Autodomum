@@ -3,8 +3,7 @@
     <div class="col-lg-8">
         <div class="card">
           <div class="card-header text-xs-center">
-            <h4 style="display: inline; margin-left: 37px;">Varal</h4>
-            <switch id="enabled" name="enabled" ng-model="automatico" class="blue" style="float:right"></switch>
+            <h4>Varal</h4>
           </div>
           <div class="card-block">
             <div class="card-text text-xs-center">
@@ -14,46 +13,45 @@
 
                 <h5 ng-hide="true">Histórico da última semana</h5>
                 <p ng-hide="true">Você protegeu suas roupas por 5h!</p>
-                <table ng-hide="true" class="table">
+                <table class="table">
                   <thead>
                     <tr>
-                      <th>Estado</th>
-                      <th>Dia</th>
-                      <th>Horário</th>
+                      <th class="text-xs-center">Estado</th>
+                      <th class="text-xs-center">Dia e Horário</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody ng-repeat="register in history">
                     <tr>
-                      <td>Fechado</td>
-                      <td>07/05/2016</td>
-                      <td>09:30</td>
-                    </tr>
-                    <tr>
-                      <td>Aberto</td>
-                      <td>07/05/2016</td>
-                      <td>10:30</td>
-                    </tr>
-                    <tr>
-                      <td>Fechado</td>
-                      <td>09/05/2016</td>
-                      <td>13:00</td>
-                    </tr>
-                    <tr>
-                      <td>Fechado</td>
-                      <td>09/05/2016</td>
-                      <td>17:00</td>
+                      <td>{{register.fechado? "Estendido" : "Recolhido"}}</td>
+                      <td>{{showDateInLocalTimezone(register.data) | date:'dd/MM/yyyy HH:mm'}}</td>
                     </tr>
                   </tbody>
                 </table>
                 
-            </div>
-           
-            Situacao do toldo<switch id="enabled" name="enabled" ng-model="estendido" class="blue" ></switch><br/>
+                <div class="card">
+                  <div class="card-header text-xs-center">
+                    <h4>Painel de Controles</h4>
+                  </div>
+                  <div class="card-block">
+                    <div class="card-text text-xs-center">
+                        <p style="display: inline; position: relative; top: -5px;">Desligado</p>
+                        <switch id="enabled" name="enabled" ng-model="command.automatico" class="blue"></switch>
+                        <p style="display: inline; position: relative; top: -5px; left: 10px;">Ligado</p>
 
+                        <br/>
+                        
+                        <p style="display: inline; position: relative; top: -5px;">Recolhido</p>
+                        <switch id="enabled" name="enabled" ng-model="command.estendido" class="blue" ></switch>
+                        <p style="display: inline; position: relative; top: -5px; left: 10px;">Estendido</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
           </div>
-          <button class="btn btn-lg btn-primary" type="submit" ng-click="changeState()" style="float:right">Executar ação</button>
-          <div id="space" style="height: 71px;"></div>
-          
+          <div class="card-footer text-muted">
+            <a ng-click="changeState()" class="btn btn-primary">Executar ação</a>
+            <a ng-click="back()" class="btn btn-secondary">Voltar</a>
+          </div>
         </div>
     </div>
 </div>

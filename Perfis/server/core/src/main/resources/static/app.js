@@ -16,6 +16,7 @@ angular.module('autodomun', [
   'autodomun.services.weather',
   'autodomun.services.user',
   'autodomun.services.permission',
+  'autodomun.services.awning',
   
   'autodomun.components',
   'autodomun.version',

@@ -9,51 +9,57 @@ angular.module('autodomun.clothes-line', ['ngRoute'])
   });
 }])
 
-.controller('ClothesLineController', function($scope, weatherService, $http, $anchorScroll, $location) {
-	$scope.toldo = [];
-	$scope.estendido = false;
-	$scope.automatico = true;
+.controller('ClothesLineController', function($scope, weatherService, awningService, $anchorScroll, $location) {
+	$scope.history = [];
+    $scope.command = {
+        estendido : false,
+        automatico : false,
+        toldo: 'VARAL'
+    };
+
     $scope.weather = weatherService.getWeather();
     $scope.today = new Date();
 
     $anchorScroll();
 
+    $scope.showDateInLocalTimezone = function(datetimeString) {
+        var dateString = datetimeString.substr(0, datetimeString.indexOf(" "));
+        var timeString = datetimeString.substr(datetimeString.indexOf(" ") + 1, datetimeString.length);
+
+        var dateArray = dateString.split("/");
+        var day = dateArray[0];
+        var month = dateArray[1];
+        var year = dateArray[2];
+
+        var timeArray = timeString.split(":");
+        var hour = timeArray[0];
+        var minute = timeArray[1];
+
+        var date = new Date(year, month, day, hour, minute);
+
+        var newDate = new Date(date.getTime()+date.getTimezoneOffset()*60*1000);
+
+        var offset = date.getTimezoneOffset() / 60;
+        var hours = date.getHours();
+
+        newDate.setHours(hours - offset);
+
+        return newDate;  
+    }
+
     $scope.changeState = function() {
-        console.log($scope.estendido);
-        console.log($scope.automatico);
-    	$http({
-            method: 'POST',
-            url: '/api/toldo/comando',
-            data: {
-            	estendido : $scope.estendido,
-            	automatico : $scope.automatico,
-            	toldo : 'VARAL'
-            }
-        }).then(function successCallback(response) {
-            if(response.status != 200) {
+    	awningService.sendCommand($scope.command)
+            .then(function successCallback(response) {
+                $location.path('/home'); //FIXME
+            }, function errorCallback(response) {
                 $scope.error = true;
-            } else {
-                
-            }
+            });
+    };
+
+    awningService.getHistory('VARAL')
+        .then(function successCallback(response) {
+            $scope.history = response.data;
         }, function errorCallback(response) {
             $scope.error = true;
         });
-
-        $location.path('/home');
-    };
-    $http({
-        method: 'GET',
-        url: '/api/toldo/historico',
-        params: {
-            toldo : 'VARAL'
-        }
-    }).then(function successCallback(response) {
-        if(response.status != 200) {
-            $scope.error = true;
-        } else {
-            $scope.toldo = response.data;
-        }
-    }, function errorCallback(response) {
-        $scope.error = true;
-    });
 });
