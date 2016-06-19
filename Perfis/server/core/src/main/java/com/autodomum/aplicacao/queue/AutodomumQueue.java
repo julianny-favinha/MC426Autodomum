@@ -13,8 +13,6 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 /**
  * @author sabrina on 13/06/16.
  */
-@Component
-@Scope("singleton")
 public class AutodomumQueue {
 
     private Queue<Comando> filaDeComandos;

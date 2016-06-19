@@ -10,6 +10,7 @@ import com.autodomum.service.ToldoService;
 import com.autodomum.service.UsuarioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -33,7 +34,7 @@ public class ServicesConfiguration {
 
     @Bean
     @Autowired
-    ToldoService toldoService(ToldoDao toldoDao, AutodomumQueue queue) {
+    ToldoService toldoService(ToldoDao toldoDao, @Qualifier("casaQueue") AutodomumQueue queue) {
         return new ToldoService(toldoDao, queue);
     }
 

@@ -6,7 +6,7 @@ package com.autodomum.comandos;
 public enum Funcionalidade {
 
     TOLDO,
-    SALA_MUSICAL,
+    AUDIO,
     JARDIM
 
 }
