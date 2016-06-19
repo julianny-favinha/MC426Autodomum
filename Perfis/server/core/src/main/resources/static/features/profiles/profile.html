@@ -22,6 +22,10 @@
                   <input type="text" ng-model="user.nome" id="inputNome" class="form-control" placeholder="Login" required autofocus>
                 </li>
                 <li class="list-group-item">
+                  <label for="inputRfid" class="sr-only">RFID</label>
+                  <input type="text" ng-model="user.rfid" id="inputRfid" class="form-control" placeholder="RFID" required autofocus>
+                </li>
+                <li class="list-group-item">
                   <h5>Permissões</h5>
                   <div ng-repeat="permissao in permissoes">
                     <input id="permission-{{permissao.id}}" type="checkbox" ng-checked="isPermissionSelected(permissao.id)" ng-click="togglePermissao(permissao.id)"/> <label for="permission-{{permissao.id}}">{{permissao.nome}} (Sistema: {{permissao.sistemaExterno}})</label> <br/>
