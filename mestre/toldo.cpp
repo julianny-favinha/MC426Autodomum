@@ -105,7 +105,7 @@ void Toldo::registrarHistorico() {
   data.concat(tipo);
   data.concat("\"}");
 
-  Serial.print("Sending: ");
+  Serial.print("[TOLDO] Registrando historico: ");
   Serial.println(data);
 
   servidor.post(HOSTORICO_TOLDO_ENDPOINT, data);

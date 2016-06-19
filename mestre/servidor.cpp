@@ -4,7 +4,8 @@
 
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };    // ethernet shield mac address
 char server[] = "secure-bastion-88575.herokuapp.com";   // name address for Autodomum server (using DNS)
-IPAddress ip(192, 168, 25, 14);                         // Set the static IP address to use if the DHCP fails to assign
+//192.168.1.133:8080
+IPAddress ip(10, 42, 0, 2);                         // Set the static IP address to use if the DHCP fails to assign
 EthernetClient client;                                  // Initialize the Ethernet client library with the IP address and port of the server that you want to connect to (port 80 is default for HTTP)
 
 
@@ -34,6 +35,8 @@ String Servidor::get(String endpoint) {
     }
 
     String readString = readResult();
+    Serial.print("[Servidor] resposta");
+    Serial.println(readString);
 
     client.stop(); //TODO testar!
 
@@ -57,6 +60,8 @@ String Servidor::post(String endpoint, String data) {
     }
 
     String readString = readResult();
+    Serial.print("[Servidor] resposta");
+    Serial.println(readString);
 
     client.stop(); //TODO testar!
 
