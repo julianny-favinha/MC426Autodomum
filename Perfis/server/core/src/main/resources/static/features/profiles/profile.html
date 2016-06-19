@@ -9,9 +9,9 @@
           <div class="card-block">
             <div class="card-text">
               <ul class="list-group">
-                <li ng-if="false" class="list-group-item">
-                  <p style="display: inline; position: relative; top: -5px;">admin</p>
-                  <switch id="enabled" name="enabled" ng-model="admin" class="blue" style="position: relative; top: 5px;"></switch>
+                <li class="list-group-item">
+                  <switch id="enabled" name="enabled" ng-model="admin" ng-change="toggleAdmin()" class="blue" style="position: relative; top: 5px;"></switch>
+                  <p style="display: inline; position: relative; top: -5px; left: 10px;">admin</p>
                 </li>
                 <li class="list-group-item">
                   <label for="inputEmail" class="sr-only">Login</label>
@@ -24,7 +24,7 @@
                 <li class="list-group-item">
                   <h5>Permissões</h5>
                   <div ng-repeat="permissao in permissoes">
-                    <input type="checkbox" ng-checked="user.permissoes[permissionIndex(permissao.id)]" ng-click="togglePermissao(permissao.id)"/> <label>{{permissao.nome}} (Sistema: {{permissao.sistemaExterno}})</label> <br/>
+                    <input type="checkbox" ng-checked="isPermissionSelected(permissao.id)" ng-click="togglePermissao(permissao.id)"/> <label>{{permissao.nome}} (Sistema: {{permissao.sistemaExterno}})</label> <br/>
                   </div>
                 </li>
               </ul>
