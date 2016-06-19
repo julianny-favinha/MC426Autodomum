@@ -37,22 +37,22 @@ public class ToldoDaoTest {
 
     @Test
     public void criarHistorico() {
-        HistoricoToldo esperado = new HistoricoToldo(true, LocalDateTime.now(), Toldo.VARAL);
+        HistoricoToldo esperado = new HistoricoToldo(true, true, LocalDateTime.now(), Toldo.VARAL);
         Integer id = toldoDao.criarHistorico(esperado);
 
         List<HistoricoToldo> historico = toldoDao.historico(Toldo.VARAL);
         assertThat(historico.size(), equalTo(1));
         assertThat(id, equalTo(id));
-        assertHistoricoToldo(esperado, id, historico.get(0));
+        assertHistoricoToldo(esperado, historico.get(0));
     }
 
     @Test
     public void historico() {
-        HistoricoToldo esperado = new HistoricoToldo(true, LocalDateTime.now(), Toldo.VARAL);
+        HistoricoToldo esperado = new HistoricoToldo(true, true, LocalDateTime.now(), Toldo.VARAL);
         final Integer id = toldoDao.criarHistorico(esperado);
-        HistoricoToldo esperado1 = new HistoricoToldo(true, LocalDateTime.now(), Toldo.VARAL);
+        HistoricoToldo esperado1 = new HistoricoToldo(true, false, LocalDateTime.now(), Toldo.VARAL);
         Integer id1 = toldoDao.criarHistorico(esperado1);
-        HistoricoToldo esperado2 = new HistoricoToldo(true, LocalDateTime.now(), Toldo.JARDIM);
+        HistoricoToldo esperado2 = new HistoricoToldo(true, true, LocalDateTime.now(), Toldo.JARDIM);
         toldoDao.criarHistorico(esperado2);
 
         List<HistoricoToldo> historico = toldoDao.historico(Toldo.VARAL);
@@ -60,11 +60,11 @@ public class ToldoDaoTest {
 
         Optional<HistoricoToldo> obtido = historico.stream().filter(h -> h.getId() == id).findFirst();
         assertThat(obtido.isPresent(), is(true));
-        assertHistoricoToldo(esperado, id, obtido.get());
+        assertHistoricoToldo(esperado, obtido.get());
 
         Optional<HistoricoToldo> obtido1 = historico.stream().filter(h -> h.getId() == id1).findFirst();
         assertThat(obtido1.isPresent(), is(true));
-        assertHistoricoToldo(esperado, id1, obtido1.get());
+        assertHistoricoToldo(esperado1, obtido1.get());
     }
 
     @Test
@@ -73,8 +73,9 @@ public class ToldoDaoTest {
         assertThat(historico.size(), equalTo(0));
     }
 
-    private void assertHistoricoToldo(HistoricoToldo esperado, Integer id, HistoricoToldo obtido) {
-        assertThat(obtido.isFechado(), is(esperado.isFechado()));
+    private void assertHistoricoToldo(HistoricoToldo esperado, HistoricoToldo obtido) {
+        assertThat(obtido.isEstendido(), is(esperado.isEstendido()));
+        assertThat(obtido.isAutomatico(), is(esperado.isAutomatico()));
         assertThat(obtido.getToldo(), equalTo(esperado.getToldo()));
     }
 

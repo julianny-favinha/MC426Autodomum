@@ -56,9 +56,16 @@ angular.module('autodomun.clothes-line', ['ngRoute'])
             });
     };
 
+    $scope.back = function() {
+        $location.path('/home');
+    }
+
     awningService.getHistory('VARAL')
         .then(function successCallback(response) {
             $scope.history = response.data;
+            var currentState = $scope.history[0];
+            $scope.command.estendido = currentState.estendido;
+            $scope.command.automatico = currentState.automatico;
         }, function errorCallback(response) {
             $scope.error = true;
         });

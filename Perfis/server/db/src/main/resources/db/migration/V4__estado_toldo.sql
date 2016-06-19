@@ -1,0 +1,1 @@
+ALTER TABLE historico_toldo ADD COLUMN automatico boolean;

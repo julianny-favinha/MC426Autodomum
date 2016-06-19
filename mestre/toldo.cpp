@@ -95,11 +95,11 @@ void Toldo::checaJardim(){
 }
 
 void Toldo::registrarHistorico() {
-  String data = "{\"fechado\" : ";
+  String data = "{\"estendido\" : ";
   if(estendido) {
-    data.concat("\"false\"");
-  } else {
     data.concat("\"true\"");
+  } else {
+    data.concat("\"false\"");
   }
   data.concat(", \"toldo\" : \"");
   data.concat(tipo);

@@ -16,13 +16,15 @@
                 <table class="table">
                   <thead>
                     <tr>
+                      <th class="text-xs-center">Automático</th>
                       <th class="text-xs-center">Estado</th>
                       <th class="text-xs-center">Dia e Horário</th>
                     </tr>
                   </thead>
                   <tbody ng-repeat="register in history">
                     <tr>
-                      <td>{{register.fechado? "Estendido" : "Recolhido"}}</td>
+                      <td>{{register.automatico? "Sim" : "Não"}}</td>
+                      <td>{{register.estendido? "Estendido" : "Recolhido"}}</td>
                       <td>{{showDateInLocalTimezone(register.data) | date:'dd/MM/yyyy HH:mm'}}</td>
                     </tr>
                   </tbody>

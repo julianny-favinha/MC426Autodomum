@@ -15,7 +15,7 @@ import java.util.List;
 public class ToldoDao {
 
     public static final RowMapper<HistoricoToldo> TOLDO_MAPPER = (rs, i) ->
-            new HistoricoToldo(rs.getInt("id"), rs.getBoolean("fechado"),
+            new HistoricoToldo(rs.getInt("id"), rs.getBoolean("fechado"), rs.getBoolean("automatico"),
                     rs.getTimestamp("data").toLocalDateTime(), Toldo.buscaPorId(rs.getInt("toldo_id")));
     private JdbcTemplate jdbcTemplate;
 

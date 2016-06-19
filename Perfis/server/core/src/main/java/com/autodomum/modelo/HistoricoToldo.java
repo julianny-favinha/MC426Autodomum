@@ -1,7 +1,6 @@
 package com.autodomum.modelo;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 /**
  * @author sabrina on 27/05/16.
@@ -9,7 +8,8 @@ import java.util.Optional;
 public class HistoricoToldo {
 
     private Integer id;
-    private boolean fechado;
+    private boolean estendido;
+    private boolean automatico;
     private LocalDateTime data;
     private Toldo toldo;
 
@@ -17,15 +17,17 @@ public class HistoricoToldo {
         data = LocalDateTime.now();
     }
 
-    public HistoricoToldo(boolean fechado, LocalDateTime data, Toldo toldo) {
-        this.fechado = fechado;
+    public HistoricoToldo(boolean estendido, boolean automatico, LocalDateTime data, Toldo toldo) {
+        this.estendido = estendido;
+        this.automatico = automatico;
         this.data = data;
         this.toldo = toldo;
     }
 
-    public HistoricoToldo(Integer id, boolean fechado, LocalDateTime data, Toldo toldo) {
+    public HistoricoToldo(Integer id, boolean fechado, boolean automatico, LocalDateTime data, Toldo toldo) {
         this.id = id;
-        this.fechado = fechado;
+        this.estendido = fechado;
+        this.automatico = automatico;
         this.data = data;
         this.toldo = toldo;
     }
@@ -34,8 +36,12 @@ public class HistoricoToldo {
         return id;
     }
 
-    public boolean isFechado() {
-        return fechado;
+    public boolean isEstendido() {
+        return estendido;
+    }
+
+    public boolean isAutomatico() {
+        return automatico;
     }
 
     public LocalDateTime getData() {

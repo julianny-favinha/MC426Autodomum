@@ -1,5 +1,6 @@
 package com.autodomum.service.usuario.to;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,9 +14,11 @@ public class UsuarioTO {
     private List<Integer> permissoes;
 
     public UsuarioTO() {
+        permissoes = new ArrayList<>();
     }
 
     public UsuarioTO(String username, String nome, int rfid) {
+        this();
         this.username = username;
         this.nome = nome;
         this.rfid = rfid;

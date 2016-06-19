@@ -42,6 +42,8 @@ public class PostgresTestSuite {
         ScriptUtils.executeSqlScript(conn, resource);
         resource = new ClassPathResource("/db/migration/V3__permissao_insert.sql");
         ScriptUtils.executeSqlScript(conn, resource);
+        resource = new ClassPathResource("/db/migration/V4__estado_toldo.sql");
+        ScriptUtils.executeSqlScript(conn, resource);
     }
 
     @AfterClass

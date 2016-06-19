@@ -20,8 +20,8 @@ import java.util.Map;
 public class CriarHistoricoToldoCommand implements Function<HistoricoToldo, Integer> {
 
     private static final String INSERT_HISTORICO_TOLDO =
-            "INSERT INTO historico_toldo (fechado, data, toldo_id) " +
-                    "VALUES (:fechado, :data, :toldo_id)";
+            "INSERT INTO historico_toldo (fechado, automatico, data, toldo_id) " +
+                    "VALUES (:fechado, :automatico, :data, :toldo_id)";
 
     private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -34,7 +34,8 @@ public class CriarHistoricoToldoCommand implements Function<HistoricoToldo, Inte
         Date data = Date.from(historicoToldo.getData().atZone(ZoneId.systemDefault()).toInstant());
 
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("fechado", historicoToldo.isFechado());
+        parameters.put("fechado", historicoToldo.isEstendido());
+        parameters.put("automatico", historicoToldo.isAutomatico());
         parameters.put("data", data);
         parameters.put("toldo_id", historicoToldo.getToldo().getId());
 

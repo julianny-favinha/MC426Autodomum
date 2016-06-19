@@ -19,8 +19,10 @@ import java.util.Map;
 public class BuscaHistoricoToldoCommand implements Function<Toldo, List<HistoricoToldo>> {
 
     private static String SELECT_HISTORICO_TOLDO =
-            "SELECT id, fechado, data, toldo_id FROM historico_toldo " +
-                    "WHERE toldo_id = :toldoId";
+            "SELECT id, fechado, automatico, data, toldo_id FROM historico_toldo " +
+                    "WHERE toldo_id = :toldoId " +
+                    "ORDER BY data DESC " +
+                    "LIMIT 5";
 
     private NamedParameterJdbcTemplate jdbcTemplate;
 
