@@ -10,7 +10,8 @@ angular.module('autodomun.menu', ['ngRoute'])
 }])
 
 .controller('View2Ctrl', function($scope, $location, $http, $anchorScroll) {
-    $scope.user;
+    $scope.user = {};
+    $scope.user.permissoes = [];;
 
     $scope.garden = function() {
         $location.path("/garden");
