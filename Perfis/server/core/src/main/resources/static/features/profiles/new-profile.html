@@ -30,7 +30,7 @@
                 
                 <h5>Permissões</h5>
                 <div ng-repeat="permissao in permissoes">
-                  <input type="checkbox" ng-click="togglePermissao(permissao.id)" /> <label>{{permissao.nome}} (Sistema: {{permissao.sistemaExterno}})</label> <br/>
+                  <input type="checkbox" ng-checked="user.permissoes[permissionIndex(permissao.id)]" ng-click="togglePermissao(permissao.id)" /> <label>{{permissao.nome}} (Sistema: {{permissao.sistemaExterno}})</label> <br/>
                 </div>
               </form>
             </div>

@@ -1,4 +1,4 @@
-angular.module('autodomun.services', ['ngRoute'])
+angular.module('autodomun.services.weather', ['ngRoute'])
 
 .factory('weatherService', function($http) {
     return { 

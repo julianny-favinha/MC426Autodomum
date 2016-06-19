@@ -9,8 +9,14 @@ angular.module('autodomun.profiles', ['ngRoute'])
   });
 })
 
-.controller('ProfilesController', function($scope, $location, $http, $anchorScroll) {
+.controller('ProfilesController', function($scope, $location, userService, $anchorScroll) {
     $scope.users = [];
+    userService.getUsers()
+        .then(function successCallback(response) {
+            $scope.users = response.data;
+        }, function errorCallback(response) {
+            $scope.error = true;
+        });
 
     $scope.view = function(user) {
         $location.path('/profile').search("username", user.username);
@@ -25,17 +31,4 @@ angular.module('autodomun.profiles', ['ngRoute'])
     }
 
     $anchorScroll();
-
-    $http({
-        method: 'GET',
-        url: '/api/usuario',
-    }).then(function successCallback(response) {
-        if(response.status != 200) {
-            $scope.error = true;
-        } else {
-            $scope.users = response.data;
-        }
-    }, function errorCallback(response) {
-        $scope.error = true;
-    });
 });

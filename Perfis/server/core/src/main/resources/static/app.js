@@ -12,7 +12,11 @@ angular.module('autodomun', [
   'autodomun.profiles',
   'autodomun.profile',
   'autodomun.profile.new',
-  'autodomun.services',
+  
+  'autodomun.services.weather',
+  'autodomun.services.user',
+  'autodomun.services.permission',
+  
   'autodomun.components',
   'autodomun.version',
 

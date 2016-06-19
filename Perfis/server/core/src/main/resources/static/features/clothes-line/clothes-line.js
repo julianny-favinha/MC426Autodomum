@@ -11,26 +11,21 @@ angular.module('autodomun.clothes-line', ['ngRoute'])
 
 .controller('ClothesLineController', function($scope, weatherService, $http, $anchorScroll, $location) {
 	$scope.toldo = [];
-	$scope.fechado = true;
+	$scope.estendido = false;
 	$scope.automatico = true;
     $scope.weather = weatherService.getWeather();
     $scope.today = new Date();
-    $scope.active = true;
+
     $anchorScroll();
-    $scope.changeToldo = function() {
-    	$scope.automatico = !($scope.automatico);
-    };
-    $scope.changeAutomatico = function() {
-    	$scope.fechado = !($scope.fechado);
-    };
+
     $scope.changeState = function() {
-        console.log($scope.fechado);
+        console.log($scope.estendido);
         console.log($scope.automatico);
     	$http({
             method: 'POST',
             url: '/api/toldo/comando',
             data: {
-            	estendido : $scope.fechado,
+            	estendido : $scope.estendido,
             	automatico : $scope.automatico,
             	toldo : 'VARAL'
             }
