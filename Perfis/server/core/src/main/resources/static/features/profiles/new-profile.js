@@ -11,19 +11,42 @@ angular.module('autodomun.profile.new', ['ngRoute'])
 
 .controller('NewProfileController', function($scope, $location, userService, permissionService, $anchorScroll) {
     $scope.passwordDontMatch = false;
+    $scope.admin = false;
     $scope.user = {};
     $scope.user.permissoes = [];
+    $scope.permissoes = [];
 
-    $scope.permissionIndex = function(idPermissao) {
+    $scope.toggleAdmin = function() {
+        if($scope.admin) {
+            $scope.user.permissoes = $scope.permissoes.map(function(permission) {
+                return permission.id;
+            });
+        } else {
+            $scope.user.permissoes = [];
+            //TODO show dialog asking to add permissions
+        }
+    }
+
+    function permissionIndex(idPermissao) {
         return $scope.user.permissoes.indexOf(idPermissao);
     }
 
+    $scope.isPermissionSelected = function(idPermissao) {
+        return $scope.user.permissoes[permissionIndex(idPermissao)];
+    }
+
     $scope.togglePermissao = function(idPermissao) {
-        var index = $scope.permissionIndex(idPermissao);
+        var index = permissionIndex(idPermissao);
         if(index < 0) {
             $scope.user.permissoes.push(idPermissao);
         } else {
             $scope.user.permissoes.splice(index, 1);
+        }
+
+        if($scope.user.permissoes.length == $scope.permissoes.length) {
+            $scope.admin = true;
+        } else {
+            $scope.admin = false;
         }
     }
 
