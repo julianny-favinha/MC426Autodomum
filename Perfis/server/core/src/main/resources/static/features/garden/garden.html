@@ -3,8 +3,7 @@
     <div class="col-lg-8">
         <div class="card">
           <div class="card-header text-xs-center">
-            <h4 style="display: inline; margin-left: 37px;">Jardim</h4>
-            <switch id="enabled" name="enabled" ng-model="active" class="blue" style="float:right"></switch>
+            <h4>Jardim</h4>
           </div>
           <div class="card-block">
             <div class="card-text text-xs-center">
@@ -29,6 +28,33 @@
       				<p>Gráfico referente às médias diárias de temperatura e umidade dos últimos 5 dias.</p>
       			  </li>
             </ul>
+
+            <br/>
+
+            <div class="card">
+              <div class="card-header text-xs-center">
+                <h4>Controles do Toldo</h4>
+              </div>
+              <div class="card-block">
+                <div class="card-text text-xs-center">
+                    <p style="display: inline; position: relative; top: -5px;">Desligado</p>
+                    <switch id="enabled" name="enabled" ng-model="awningCommand.automatico" class="blue"></switch>
+                    <p style="display: inline; position: relative; top: -5px; left: 10px;">Ligado</p>
+
+                    <br/>
+                    
+                    <p style="display: inline; position: relative; top: -5px;">Recolhido</p>
+                    <switch id="enabled" name="enabled" ng-model="awningCommand.estendido" class="blue" ></switch>
+                    <p style="display: inline; position: relative; top: -5px; left: 10px;">Estendido</p>
+                </div>
+              </div>
+              <div class="card-footer text-muted">
+                <a ng-click="changeAwningState()" class="btn btn-primary">Executar ação</a>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer text-muted">
+            <a ng-click="back()" class="btn btn-secondary">Voltar</a>
           </div>
         </div>
     </div>

@@ -19,10 +19,39 @@ angular.module('autodomun.garden', ['ngRoute'])
     };
 })
 
-.controller('GardenController', function($scope, weatherService, $anchorScroll) {
+.controller('GardenController', function($scope, weatherService, awningService, $anchorScroll, $location) {
+    $scope.awningCommand = {
+        estendido : false,
+        automatico : false,
+        toldo: 'JARDIM'
+    };
+
     $scope.weather = weatherService.getWeather();
     $scope.today = new Date();
-    $scope.active = true;
 
     $anchorScroll();
+
+    $scope.changeAwningState = function() {
+        awningService.sendCommand($scope.awningCommand)
+            .then(function successCallback(response) {
+                $location.path('/home'); //FIXME
+            }, function errorCallback(response) {
+                $scope.error = true;
+            });
+    };
+
+    $scope.back = function() {
+        $location.path('/home');
+    }
+
+    awningService.getHistory('JARDIM')
+        .then(function successCallback(response) {
+            $scope.history = response.data; //Se quiser exibir o historico ta aqui
+            var currentState = $scope.history[0];
+            $scope.awningCommand.estendido = currentState.estendido;
+            $scope.awningCommand.automatico = currentState.automatico;
+        }, function errorCallback(response) {
+            $scope.error = true;
+        });
+
 });
