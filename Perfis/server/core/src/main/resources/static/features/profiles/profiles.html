@@ -10,7 +10,7 @@
             <div class="card-text">
               <div class="list-group">
                 <a ng-repeat="user in users" ng-click="view(user)" class="list-group-item" style="cursor:pointer">
-                  <span ng-if="false" class="label label-warning label-pill pull-right">admin</span>
+                  <span ng-show="isAdmin(user)" class="label label-warning label-pill pull-right">admin</span>
                   {{user.nome}}
                 </a>
               </div>

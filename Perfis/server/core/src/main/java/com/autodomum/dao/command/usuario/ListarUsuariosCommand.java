@@ -27,7 +27,15 @@ public class ListarUsuariosCommand implements Supplier<List<UsuarioTO>> {
     @Override
     public List<UsuarioTO> get() {
         try {
-            return jdbcTemplate.query(SELECT_USUARIOS, UsuarioDao.USUARIO_MAPPER);
+            List<UsuarioTO> usuarios = jdbcTemplate.query(SELECT_USUARIOS, UsuarioDao.USUARIO_MAPPER);
+
+            //FIXME feio
+            for (UsuarioTO usuarioTO : usuarios) {
+                List<Integer> permissoes = new BuscaPermissoesDeUsuarioCommand(jdbcTemplate).apply(usuarioTO.getUsername());
+                usuarioTO.setPermissoes(permissoes);
+            }
+
+            return usuarios;
         } catch (EmptyResultDataAccessException e) {
             return Collections.emptyList();
         }

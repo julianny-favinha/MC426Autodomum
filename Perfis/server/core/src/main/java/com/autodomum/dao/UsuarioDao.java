@@ -34,7 +34,7 @@ public class UsuarioDao {
     public Optional<UsuarioTO> buscaPorUsername(String username) {
     	Optional<UsuarioTO> user = new BuscaUsuarioPorUsernameCommand(jdbcTemplate).apply(username);
     	if (user.isPresent()) {
-            user.get().setPermissoes(new BuscaPermissoesDeUsuario(jdbcTemplate).apply(username));
+            user.get().setPermissoes(new BuscaPermissoesDeUsuarioCommand(jdbcTemplate).apply(username));
         }
         return user;
     }

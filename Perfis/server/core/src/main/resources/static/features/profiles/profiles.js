@@ -18,6 +18,11 @@ angular.module('autodomun.profiles', ['ngRoute'])
             $scope.error = true;
         });
 
+    $scope.isAdmin = function(user) {
+        console.log(user);
+        return user.permissoes.length == 4; //FIXME
+    }
+
     $scope.view = function(user) {
         $location.path('/profile').search("username", user.username);
     }

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-public class BuscaPermissoesDeUsuario implements Function<String, List<Integer>> {
+public class BuscaPermissoesDeUsuarioCommand implements Function<String, List<Integer>> {
 
     private static final String SELECT_PERMISSOES_USUARIO =
             "SELECT id_permissao FROM usuario_permissoes "
@@ -18,7 +18,7 @@ public class BuscaPermissoesDeUsuario implements Function<String, List<Integer>>
 
     private NamedParameterJdbcTemplate jdbcTemplate;
 
-    public BuscaPermissoesDeUsuario(JdbcTemplate jdbcTemplate) {
+    public BuscaPermissoesDeUsuarioCommand(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
     }
 
