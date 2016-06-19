@@ -19,7 +19,6 @@ angular.module('autodomun.profiles', ['ngRoute'])
         });
 
     $scope.isAdmin = function(user) {
-        console.log(user);
         return user.permissoes.length == 4; //FIXME
     }
 
