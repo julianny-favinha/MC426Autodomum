@@ -101,6 +101,13 @@ void Toldo::registrarHistorico() {
   } else {
     data.concat("\"false\"");
   }
+  data.concat(", \"automatico\" : \"");
+  if(automatico) {
+    data.concat("\"true\"");
+  } else {
+    data.concat("\"false\"");
+  }
+
   data.concat(", \"toldo\" : \"");
   data.concat(tipo);
   data.concat("\"}");
