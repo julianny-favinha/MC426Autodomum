@@ -4,6 +4,8 @@ var queue = new Array();
 var queuename = new Array();
 var flag = 1;
 
+
+
 window.onload = function start(){
 	listen();
 }
@@ -16,10 +18,31 @@ audio.addEventListener('ended', function(){
 	}
 });
 
+
 function listen(){
+
 	if (flag){
-		var artist = 'radiohead';
+		var artist = 'acdc';
+
 		search(artist);
+
+		//botao controla play
+		$('#playSong').on("click",function(e){
+			e.preventDefault();
+			audio.play();
+		});
+
+		//botao controla pause
+		$('#pauseSong').on("click",function(e){
+			e.preventDefault();
+			audio.pause();
+		});
+
+		//botao controla next
+		$('#nextSong').on("click",function(e){
+			e.preventDefault();
+			next(artist);
+		});
 	
 /*	$.ajax({
 		url: '',
@@ -39,7 +62,7 @@ function listen(){
 	});
 LEITURA DE LISTA DE COMANDOS...*/ 
 	}
-	setTimeout(listen, 10000);
+	setTimeout(listen, 100000);
 }
 
 function getArtistID(query){
@@ -78,8 +101,9 @@ function search(artistName){
 function play(num){
 	audio.src = queue[num];
 	audio.play();
+	$('player').attr('');
 	var rec = document.getElementById('play');
-	rec.innerHTML = 'Musica: '+queuename[num];
+	rec.innerHTML = 'Música: '+queuename[num];
 }
 
 function next(artistName){
@@ -95,7 +119,7 @@ function next(artistName){
 		audio.src = queue[num];
 		audio.play();
 		var rec = document.getElementById('play');
-		rec.innerHTML = 'Musica: '+queuename[num];
+		rec.innerHTML = 'Música: '+queuename[num];
 	}
 }
 
