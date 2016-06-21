@@ -79,4 +79,8 @@ public class UsuarioService {
 
         return true;
     }
+
+	public String getUserbyRfid(int rfid) {
+		return usuarioDao.BuscaUsuarioPorRfid(rfid).get(0);
+	}
 }

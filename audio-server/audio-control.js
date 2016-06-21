@@ -22,9 +22,7 @@ audio.addEventListener('ended', function(){
 function listen(){
 
 	if (flag){
-		var artist = 'acdc';
-
-		search(artist);
+		
 
 		//botao controla play
 		$('#playSong').on("click",function(e){
@@ -44,23 +42,14 @@ function listen(){
 			next(artist);
 		});
 	
-/*	$.ajax({
-		url: '',
+	$.ajax({
+		url: 'http://secure-bastion-88575.herokuapp.com/audio/comando',
 		sucess: function(response) {
-			switch(response.function) {
-				case 'Play':			
-					play(response.artist);
-					break;
-				case 'Next':
-					next(response.artist);
-					break;
-				case 'Stop':
-					stop();
-					break;
-			}
+			console.log(response);
+			// FALTA TRATAR RESPOSTA
 		}	
 	});
-LEITURA DE LISTA DE COMANDOS...*/ 
+
 	}
 	setTimeout(listen, 100000);
 }

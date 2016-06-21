@@ -1,4 +1,4 @@
-	package com.autodomum.aplicacao.controller;
+package com.autodomum.aplicacao.controller;
 
 import com.autodomum.aplicacao.queue.AutodomumQueue;
 import com.autodomum.comandos.Comando;
@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Collection;
 
 /**
- * @author sabrina on 13/06/16.
+ * @author sabrina on 19/06/16.
  */
 @RestController
-@RequestMapping("/casa/comando")
-public class ComandosController {
+@RequestMapping("/audio/comando")
+public class AudioComandosController {
 
     @Autowired
-    @Qualifier("casaQueue")
+    @Qualifier("audioQueue")
     AutodomumQueue queue;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)

@@ -59,4 +59,8 @@ public class UsuarioDao {
     public Optional<Integer> buscaRfidSeTemPermissao(int rfid) {
         return new BuscaRfidSeTemPermissaoCommand(jdbcTemplate).apply(rfid, 3); //FIXME
     }
+
+	public List<String> BuscaUsuarioPorRfid(int rfid) {
+		return new BuscaUsuarioPorRfidCommand(jdbcTemplate).apply(rfid);
+	}
 }

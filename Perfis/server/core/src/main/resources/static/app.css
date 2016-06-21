@@ -92,10 +92,10 @@ img.graphic {
     border-bottom-left-radius: 0.25rem;
 }
 
-.containerplayer {margin: auto; width: 400px; height: 80px; background: #FFF; box-shadow: 2px 2px 4px #CCC;}
+.containerplayer {margin: auto; width: 350px; min-height: 80px; background: #FFF; box-shadow: 2px 2px 4px #CCC;}
 #play {margin-bottom: 10px; padding: 15px; font-size: 20px; margin-top: 5px;}
 .player {position: relative; float: left; width: 100%; background: #3C3C3C; text-align: center;}
-.player .btn-item {float: left; text-align: center; margin-right: 10px; width: 60px; height: 80px; color: #FFF; margin-left: 40px;}
+.player .btn-item {float: left; text-align: center; margin-right: 10px; width: 60px; height: 80px; color: #FFF; margin-left: 9%;}
 .player .btn-item a {float: left; text-decoration: none; color: #FFF; padding: 10px;}
 .icon {float: left; width: 60px; height: 60px; text-indent: -99999em;}
 .icon-play {background: url('images/play.png') no-repeat;}

@@ -1,6 +1,7 @@
 package com.autodomum.aplicacao.config;
 
 import com.autodomum.dao.PermissaoDao;
+import com.autodomum.dao.PreferenciasDao;
 import com.autodomum.dao.ToldoDao;
 import com.autodomum.dao.UsuarioDao;
 import com.zaxxer.hikari.HikariDataSource;
@@ -54,6 +55,12 @@ public class DaosConfiguration {
     @Autowired
     public PermissaoDao permissaoDao(JdbcTemplate jdbcTemplate) {
         return new PermissaoDao(jdbcTemplate);
+    }
+    
+    @Bean
+    @Autowired
+    public PreferenciasDao preferenciasDao(JdbcTemplate jdbcTemplate) {
+    	return new PreferenciasDao(jdbcTemplate);
     }
 
 }

@@ -1,34 +1,41 @@
 package com.autodomum.aplicacao.controller;
 
-import com.autodomum.aplicacao.queue.AutodomumQueue;
-import com.autodomum.comandos.Comando;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import com.autodomum.comandos.ComandoAudio;
+import com.autodomum.modelo.Preferencias;
+import com.autodomum.service.AudioService;
+import com.autodomum.service.usuario.results.DefaultResponse;
 
-import java.util.Collection;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
- * @author sabrina on 19/06/16.
+ * @author sabrina on 27/05/16.
  */
 @RestController
-@RequestMapping("audio/comando")
+@RequestMapping("/api/audio")
 public class AudioController {
 
     @Autowired
-    @Qualifier("audioQueue")
-    AutodomumQueue queue;
+    private AudioService audioService;
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public Collection<Comando> lerComandos() {
-        return queue.receiveAll();
+    @RequestMapping(value = "/comando", method = RequestMethod.POST)
+    public DefaultResponse comandarAudio(@RequestBody ComandoAudio command) {
+        audioService.enviarComando(command);
+        return new DefaultResponse(true);
     }
-
-    @RequestMapping(method = RequestMethod.GET)
-    public Comando lerComando() {
-        return queue.receive();
+    
+    @RequestMapping(value = "/artista", method = RequestMethod.GET)
+    public String buscaArtista(@RequestParam("username") String username){
+    	String artista = audioService.BuscaArtista(username);
+    	if (artista != "0")
+    		return "{\"artista\":\""+artista+"\"}";
+    	return "{\"artista\":\"acdc\"}";
     }
+    
+    @RequestMapping(value = "/artista/new", method = RequestMethod.POST)
+    public void novoArtista(@RequestBody Preferencias preferencia){
+    	audioService.cadastroArtista(preferencia);
+    }
+    
 
 }

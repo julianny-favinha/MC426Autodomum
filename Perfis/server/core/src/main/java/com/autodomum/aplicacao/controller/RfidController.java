@@ -1,5 +1,8 @@
 package com.autodomum.aplicacao.controller;
 
+import com.autodomum.comandos.ComandoAudio;
+import com.autodomum.modelo.Audio;
+import com.autodomum.service.AudioService;
 import com.autodomum.service.UsuarioService;
 import com.autodomum.service.usuario.results.DefaultResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +20,20 @@ public class RfidController {
 
     @Autowired
     UsuarioService usuarioService;
+    
+    @Autowired
+    AudioService audioService;
 
     @RequestMapping(method = RequestMethod.GET)
     public DefaultResponse autentica(@RequestParam("rfid") int rfid) {
+    	if (usuarioService.autenticaRfid(rfid) == true){
+    		String username = usuarioService.getUserbyRfid(rfid);
+    		ComandoAudio comando = new ComandoAudio();
+    		String artista = audioService.BuscaArtista(username);
+    		comando.setAudio(Audio.PLAY);
+    		comando.setArtista(artista);
+    		audioService.enviarComando(comando);
+    	}
         return new DefaultResponse(usuarioService.autenticaRfid(rfid));
     }
 

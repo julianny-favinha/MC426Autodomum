@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+        <div class="card">
+          <div class="card-header text-xs-center">
+            <h4 style="display: inline; margin-left: 37px;">Novo Artista</h4>  
+          </div>
+          <div class="card-block">
+            <div class="card-text text-xs-center">
+	            <form class ="form-signin">
+	            	<fieldset>
+	            	  <label for="inputName" class="sr-only">Nome do Artista</label>
+                      <input type="text" ng-model="preferencia.artista" id="inputName" class="form-control" placeholder="Nome do Artista" required autofocus>
+	            	</fieldset>
+	            </form>
+            </div>
+            <div class="card-footer text-muted">
+              <a ng-click="create()" class="btn btn-primary">Criar</a>
+              <a ng-click="back()" class="btn btn-secondary">Voltar</a>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

@@ -4,20 +4,20 @@
         <div class="card">
           <div class="card-header text-xs-center">
             <h4 style="display: inline; margin-left: 37px;">Áudio</h4>
-            <switch id="enabled" name="enabled" ng-model="active" class="blue" style="float:right"></switch>
+            <i class="fa fa-user-plus" aria-hidden="true" style="float: right; position: relative; top: 5px;cursor:pointer" ng-click="artistaNew()"></i>
           </div>
           <div class="card-block">
             <div class="card-text text-xs-center">
 	            <div class="containerplayer">
 	                <div class="player">
 						<div class="btn-item">
-							<a id="playSong" href=""><span class="icon icon-play">Play</span></a>
+							<a id="playSong" ng-click="command.audio = 'PLAY'; sendAction()"><span class="icon icon-play">Play</span></a>
 						</div>
 						<div class="btn-item">
-							<a id="pauseSong" href=""><span class="icon icon-pause">Pause</a>
+							<a id="pauseSong" ng-click="command.audio = 'STOP'; sendAction()"><span class="icon icon-pause">Pause</a>
 						</div>
 						<div class="btn-item">
-							<a id="nextSong" href=""><span class="icon icon-next">Próxima</span></a>
+							<a id="nextSong" ng-click="command.audio = 'NEXT'; sendAction()"><span class="icon icon-next">Próxima</span></a>
 						</div>
 					</div>
 				</div>
