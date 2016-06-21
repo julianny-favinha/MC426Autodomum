@@ -10,18 +10,21 @@
             <div class="card-text text-xs-center">
 	            <div class="containerplayer">
 	                <div class="player">
-						<div class="btn-item">
+						<div class="btn-item" style="cursor: pointer;">
 							<a id="playSong" ng-click="command.audio = 'PLAY'; sendAction()"><span class="icon icon-play">Play</span></a>
 						</div>
-						<div class="btn-item">
+						<div class="btn-item" style="cursor: pointer;">
 							<a id="pauseSong" ng-click="command.audio = 'STOP'; sendAction()"><span class="icon icon-pause">Pause</a>
 						</div>
-						<div class="btn-item">
+						<div class="btn-item" style="cursor: pointer;">
 							<a id="nextSong" ng-click="command.audio = 'NEXT'; sendAction()"><span class="icon icon-next">Próxima</span></a>
 						</div>
 					</div>
 				</div>
             </div>
+          </div>
+          <div class="card-footer text-muted">
+             <a ng-click="back()" class="btn btn-secondary">Voltar</a>
           </div>
         </div>
     </div>

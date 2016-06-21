@@ -17,6 +17,10 @@ angular.module('autodomun.audio', ['ngRoute'])
     	artista : 'radiohead',
     	audio : 'PLAY'
     };
+
+    $scope.back = function() {
+        $location.path('/home');
+    }
     
     $http({
         method: 'GET',
