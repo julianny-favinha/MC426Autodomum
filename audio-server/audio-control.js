@@ -51,7 +51,7 @@ function listen(){
 	});
 
 	}
-	setTimeout(listen, 100000);
+	setTimeout(listen, 1000);
 }
 
 function getArtistID(query){
