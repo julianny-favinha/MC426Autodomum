@@ -18,10 +18,10 @@ body {
     color: #222;
 }
 
-.container {position: absolute; margin: -100px -200px; top: 50%; left: 50%; width: 400px; min-height: 50px; background: #FFF; box-shadow: 2px 2px 4px #CCC;}
+.container {position: absolute; margin: -100px -175px; top: 50%; left: 50%; width: 350px; min-height: 50px; background: #FFF; box-shadow: 2px 2px 4px #CCC;}
 #play {margin-bottom: 10px; padding: 15px; font-size: 20px; margin-top: 5px;}
 .player {position: relative; float: left; width: 100%; background: #3C3C3C; text-align: center;}
-.player .btn-item {float: left; text-align: center; margin-right: 10px; width: 60px; height: 80px; color: #FFF; margin-left: 40px;}
+.player .btn-item {float: left; text-align: center; margin-right: 10px; width: 60px; height: 80px; color: #FFF; margin-left: 9%;}
 .player .btn-item a {float: left; text-decoration: none; color: #FFF; padding: 10px;}
 .icon {float: left; width: 60px; height: 60px; text-indent: -99999em;}
 .icon-play {background: url('play.png') no-repeat;}
