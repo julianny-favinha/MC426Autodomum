@@ -19,6 +19,7 @@ angular.module('autodomun', [
   'autodomun.services.permission',
   'autodomun.services.awning',
   'autodomun.services.preferencia',
+  'autodomun.services.garden',
   
   'autodomun.components',
   'autodomun.version',

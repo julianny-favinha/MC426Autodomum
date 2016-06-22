@@ -19,12 +19,13 @@ angular.module('autodomun.garden', ['ngRoute'])
     };
 })
 
-.controller('GardenController', function($scope, weatherService, awningService, $anchorScroll, $location) {
+.controller('GardenController', function($scope, weatherService, awningService, gardenService, $anchorScroll, $location) {
     $scope.awningCommand = {
         estendido : false,
         automatico : false,
         toldo: 'JARDIM'
     };
+    $scope.dadosJardim = {};
 
     $scope.weather = weatherService.getWeather();
     $scope.today = new Date();
@@ -40,6 +41,16 @@ angular.module('autodomun.garden', ['ngRoute'])
             });
     };
 
+    $scope.translateRainLevel = function(rainLevel) {
+        if(rainLevel == "CHUVA_FORTE") {
+            return "Chuva forte";
+        } else if(rainLevel == "CHUVA_FRACA") {
+            return "Chuva fraca";
+        } else if(rainLevel == "SECO") {
+            return "Sem chuva";
+        }
+    }
+
     $scope.back = function() {
         $location.path('/home');
     }
@@ -50,6 +61,13 @@ angular.module('autodomun.garden', ['ngRoute'])
             var currentState = $scope.history[0];
             $scope.awningCommand.estendido = currentState.estendido;
             $scope.awningCommand.automatico = currentState.automatico;
+        }, function errorCallback(response) {
+            $scope.error = true;
+        });
+
+    gardenService.getHistory()
+        .then(function successCallback(response) {
+            $scope.dadosJardim = response.data;
         }, function errorCallback(response) {
             $scope.error = true;
         });
