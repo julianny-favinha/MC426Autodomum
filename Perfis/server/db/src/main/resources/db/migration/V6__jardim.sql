@@ -8,7 +8,7 @@ create table historico_jardim (
     temperatura float,
     data timestamp,
     estado_chuva_id int REFERENCES estado_chuva(id)
-)
+);
 
 INSERT INTO estado_chuva (id, name) VALUES(1, 'SECO');
 INSERT INTO estado_chuva (id, name) VALUES(2, 'CHUVA_FRACA');

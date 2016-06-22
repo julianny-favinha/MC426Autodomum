@@ -26,7 +26,7 @@ public class CriarHistoricoJardimCommand implements Function<HistoricoJardim, In
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     public CriarHistoricoJardimCommand(JdbcTemplate jdbcTemplate) {
-        new NamedParameterJdbcTemplate(jdbcTemplate);
+        this.jdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class CriarHistoricoJardimCommand implements Function<HistoricoJardim, In
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("temperatura", historicoJardim.getTemperatura());
         parameters.put("data", data);
-        parameters.put("stado_chuva_id", historicoJardim.getEstadoChuva().getId());
+        parameters.put("estado_chuva_id", historicoJardim.getEstadoChuva().getId());
 
         SqlParameterSource source = new MapSqlParameterSource(parameters);
         KeyHolder keyHolder = new GeneratedKeyHolder();

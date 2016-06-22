@@ -20,6 +20,7 @@ public class HistoricoJardim {
     }
 
     public HistoricoJardim(Integer id, EstadoChuva estadoChuva, float temperatura, LocalDateTime data) {
+        this.id = id;
         this.estadoChuva = estadoChuva;
         this.temperatura = temperatura;
         this.data = data;
