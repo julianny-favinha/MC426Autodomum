@@ -34,5 +34,6 @@ class Toldo {
         void checaJardim();
         void checaVaral();
         void registrarHistorico();
+        void registraHistoricoJardim(int chuva, float temperatura);
         void ligaValvula();
 };

@@ -24,9 +24,6 @@ Servidor servidor(HOST);
 Toldo jardim("JARDIM", 8, 10, 9, 11, servidor, 1);
 Toldo varal("VARAL", 4, 6, 5, 7, servidor, -1);
 
-//=====TESTES - REMOVER POSTERIORMENTE======
-int chaveiro[5];
-
 void setup() {
   // Open serial communications and wait for port to open:
   Serial.begin(9600);
@@ -38,13 +35,6 @@ void setup() {
   // Inicia a conexão I2C BUS como escravo pelo endereço 9
   Wire.begin(9);
   Wire.onReceive(receiveEvent);
-
-	//=====TESTES - REMOVER POSTERIORMENTE======
-	chaveiro[0] = 84;
-	chaveiro[1] = 116;
-	chaveiro[2] = 97;
-	chaveiro[3] = 235;
-	chaveiro[4] = 170;
 
   // Define modo de pinos e LEDs como Output
   pinMode(13, OUTPUT);

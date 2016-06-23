@@ -30,8 +30,13 @@
 
 #define HOSTORICO_TOLDO_ENDPOINT "/toldo/historico"
 
+//Pooling do Jardim de 30 minutos = 1800 segundos
+#define POOLING_HISTORICO_JARDIM 1800
+
 DHT dht(DHTPIN, DHTTYPE);
 boolean dhtBegin = false;
+
+int contadorPoolingJardim = POOLING_HISTORICO_JARDIM;
 
 void Toldo::recolhe() {
   
@@ -118,6 +123,32 @@ void Toldo::checaJardim(){
       estende();
     }
   }
+
+  if(contadorPoolingJardim == POOLING_HISTORICO_JARDIM) {
+    contadorPoolingJardim = 0;
+    registraHistoricoJardim(chuva, temperatura);
+  }
+  contadorPoolingJardim++;
+}
+
+void Toldo::registraHistoricoJardim(int chuva, float temperatura) {
+  // Salvar Historico do Jardim
+  String data = "{\"estadoChuva:\":";
+  if(chuva == NENHUMA) {
+      data.concat("\"SECO\"");
+  } else if(chuva == POUCA) {
+      data.concat("\"CHUVA_FRACA\"");
+  } else {
+      data.concat("\"CHUVA_FORTE\"");
+  }
+  
+  data.concat(",\"temperatura\":");
+  data.concat(temperatura);
+  data.concat("}");
+  
+  String endpoint = "/jardim/historico";
+  
+  servidor.post(endpoint, data);
 }
 
 void Toldo::registrarHistorico() {
