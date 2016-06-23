@@ -29,7 +29,7 @@ public class RfidController {
     	if (usuarioService.autenticaRfid(rfid) == true){
     		String username = usuarioService.getUserbyRfid(rfid);
     		ComandoAudio comando = new ComandoAudio();
-    		String artista = audioService.BuscaArtista(username);
+    		String artista = audioService.buscaArtista(username);
     		comando.setAudio(Audio.PLAY);
     		comando.setArtista(artista);
     		audioService.enviarComando(comando);

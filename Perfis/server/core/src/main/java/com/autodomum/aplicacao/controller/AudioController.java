@@ -26,7 +26,7 @@ public class AudioController {
     
     @RequestMapping(value = "/artista", method = RequestMethod.GET)
     public String buscaArtista(@RequestParam("username") String username){
-    	String artista = audioService.BuscaArtista(username);
+    	String artista = audioService.buscaArtista(username);
     	if (artista != "0")
     		return "{\"artista\":\""+artista+"\"}";
     	return "{\"artista\":\"acdc\"}";
