@@ -38,7 +38,7 @@ String Servidor::get(String endpoint) {
     Serial.print("[Servidor] resposta");
     Serial.println(readString);
 
-    client.stop(); //TODO testar!
+    client.stop();
 
     return readString;
 }

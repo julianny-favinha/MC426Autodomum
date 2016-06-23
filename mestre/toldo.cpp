@@ -1,5 +1,10 @@
 #include <Arduino.h>
+#include "DHT.h"
 #include "toldo.hpp"
+
+//Sensor de Temperatura - DHT22
+#define DHTPIN 2     // what pin we're connected to
+#define DHTTYPE DHT22   // DHT 22  (AM2302)
 
 //---( Steps per OUTPUT SHAFT of gear reduction )---
 #define steps2take 32 * 16  //1/4 de volta
@@ -9,6 +14,7 @@
 #define UMIDADE_MIN 250
 #define CHUVA_MAX 1024
 #define CHUVA_MIN 0
+#define TEMP_MAX 40
 
 //Estados do sensor de chuva
 #define MUITA 0
@@ -19,15 +25,20 @@
 #define SENSOR_CHUVA A0
 #define SENSOR_UMIDADE A1
 
+//Porta Módulo Relé - Válvula Solenoide
+#define RELE 3
+
 #define HOSTORICO_TOLDO_ENDPOINT "/toldo/historico"
+
+DHT dht(DHTPIN, DHTTYPE);
+boolean dhtBegin = false;
 
 void Toldo::recolhe() {
   
 	if (estendido){
 		(*motor).setSpeed(500);
-		(*motor).step(-steps2take);
+		(*motor).step((-steps2take) * this->sentido);
 		estendido = false;
-		delay(2000);
     registrarHistorico();
 	}
 }
@@ -36,9 +47,8 @@ void Toldo::estende() {
   
 	if (!estendido){
 		(*motor).setSpeed(500);
-		(*motor).step(steps2take);
+		(*motor).step(steps2take * this->sentido);
 		estendido = true;
-		delay(2000);
     registrarHistorico();
 	}
 }
@@ -75,7 +85,14 @@ void Toldo::checaVaral(){
 
 void Toldo::checaJardim(){
   // Leitura do sensor de umidade na porta analogica A1
+  if(!dhtBegin){
+    dhtBegin = true;
+    dht.begin();
+  }
   int umidade = analogRead(SENSOR_UMIDADE);
+  float temperatura = dht.readTemperature();
+  Serial.print("Temperatura: ");
+  Serial.println(temperatura);
   // Mapeamento das leituras do sensor de chuva na porta analogica A0
   int chuva = map(analogRead(SENSOR_CHUVA), CHUVA_MIN, CHUVA_MAX, 0, 3);
 
@@ -86,11 +103,20 @@ void Toldo::checaJardim(){
         estende();
         break;
       case NENHUMA:
-        recolhe();
+        if(temperatura < TEMP_MAX){
+          recolhe();
+        }else{
+          estende();
+        }
         break;
     }
   } else if(umidade <= UMIDADE_MIN){ // Solo seco
-    recolhe();
+    if(temperatura < TEMP_MAX){
+      recolhe();
+      ligaValvula();
+    }else{
+      estende();
+    }
   }
 }
 
@@ -118,3 +144,10 @@ void Toldo::registrarHistorico() {
   servidor.post(HOSTORICO_TOLDO_ENDPOINT, data);
 }
 
+void Toldo::ligaValvula(){
+  digitalWrite(RELE, LOW);
+  Serial.println("Rele Ligado");
+  delay(6000);
+  digitalWrite(RELE, HIGH);
+  Serial.println("Rele Desligado");
+}
