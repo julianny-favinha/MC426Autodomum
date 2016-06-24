@@ -16,14 +16,14 @@ public class Usuario {
     private String username;
     private String nome;
     private String senha;
-    private int rfid;
+    private Long rfid;
     private List<Integer> permissoes;
 
     public Usuario() {
 
     }
 
-    public Usuario(String username, String nome, String senha, int rfid, List<Integer> permissoes) {
+    public Usuario(String username, String nome, String senha, Long rfid, List<Integer> permissoes) {
         this.username = username;
         this.nome = nome;
         this.senha = senha;
@@ -39,7 +39,7 @@ public class Usuario {
         return senha;
     }
 
-    public int getRfid() {
+    public Long getRfid() {
         return rfid;
     }
 
@@ -63,7 +63,7 @@ public class Usuario {
         private String username;
         private String nome;
         private String senha;
-        private int rfid;
+        private Long rfid;
         private List<Integer> permissoes;
 
         public Builder nome(String nome) {
@@ -76,7 +76,7 @@ public class Usuario {
             return this;
         }
 
-        public Builder rfid(int rfid) {
+        public Builder rfid(Long rfid) {
             this.rfid = rfid;
             return this;
         }

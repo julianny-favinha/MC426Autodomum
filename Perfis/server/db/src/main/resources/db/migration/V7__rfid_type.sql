@@ -1,0 +1,1 @@
+ALTER TABLE usuario ALTER COLUMN rfid TYPE bigint;

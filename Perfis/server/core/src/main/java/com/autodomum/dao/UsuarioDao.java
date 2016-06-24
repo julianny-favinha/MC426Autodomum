@@ -17,7 +17,7 @@ public class UsuarioDao {
     public static final RowMapper<UsuarioTO> USUARIO_MAPPER = (rs, i) ->
             UsuarioTO.builder()
                     .nome(rs.getString("nome"))
-                    .rfid(rs.getInt("rfid"))
+                    .rfid(rs.getLong("rfid"))
                     .username(rs.getString("username"))
                     .build();
 

@@ -110,7 +110,7 @@ public class UsuarioDaoTest {
         return Usuario.builder()
                 .nome("Foo")
                 .senha("loucura")
-                .rfid(123)
+                .rfid(84_116_97_235_170L)
                 .username("foo");
     }
 
