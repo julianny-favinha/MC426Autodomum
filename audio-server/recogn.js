@@ -14,13 +14,14 @@
                     audio.play();
 					var rec = document.getElementById('play');
 					rec.innerHTML = 'Musica: '+track.name;
-					flag = 0;
                 }
             }
         });
     }
 
     function playSong(songName, artistName) {
+        flag = 0;
+        audio.pause();
         var query = songName;
         if (artistName) {
             query += ' artist:' + artistName;
@@ -33,9 +34,11 @@
     if (annyang) {
        
         var commands = {
-            'stop': function () {
+                'stop': function () {
                 audio.pause();
-				flag = 0;
+            },
+                'play': function () {
+                audio.play();
             },
                 'play track *song': function (song) {
                 playSong(song);
@@ -43,7 +46,7 @@
                 'play *song by *artist': function (song, artist) {
                 playSong(song, artist);
             },
-                'play *song': function (song) {
+                'play song *song': function (song) {
                 playSong(song);
             },
                 'play *song': function (song) {

@@ -22,48 +22,29 @@ audio.addEventListener('ended', function(){
 function listen(){
 
 	if (flag){
-		
-
-		//botao controla play
-		$('#playSong').on("click",function(e){
-			e.preventDefault();
-			audio.play();
-		});
-
-		//botao controla pause
-		$('#pauseSong').on("click",function(e){
-			e.preventDefault();
-			audio.pause();
-		});
-
-		//botao controla next
-		$('#nextSong').on("click",function(e){
-			e.preventDefault();
-			next(artist);
-		});
 	
-	$.ajax({
-		type: 'GET', 
-	    url: 'http://secure-bastion-88575.herokuapp.com/audio/comando', 
-	    dataType: 'jsonp',
-	    success: function (response) { 
-	        if (response !== null) {
-	        	var acao = response.audio;
-	        	switch(acao){
-	        		case 'PLAY':
-	        			search(response.artista);
-	        		break;
-	        		case 'STOP':
-	        			audio.pause();
-	        		break;
-	        		case 'NEXT':
-	        			next(response.artista);
-	        		break;
-	        	}
+		$.ajax({
+			type: 'GET', 
+		    url: 'http://secure-bastion-88575.herokuapp.com/audio/comando', 
+		    dataType: 'jsonp',
+		    success: function (response) { 
+		        if (response !== null) {
+		        	var acao = response.audio;
+		        	switch(acao){
+		        		case 'PLAY':
+		        			search(response.artista);
+		        		break;
+		        		case 'STOP':
+		        			audio.pause();
+		        		break;
+		        		case 'NEXT':
+		        			next(response.artista);
+		        		break;
+		        	}
 
-	    	}
-    	}	
-	});
+		    	}
+	    	}	
+		});
 
 	}
 	setTimeout(listen, 500);
