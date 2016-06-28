@@ -12,7 +12,7 @@ import java.util.function.BiFunction;
 /**
  * @author sabrina on 16/06/16.
  */
-public class BuscaRfidSeTemPermissaoCommand implements BiFunction<Integer, Integer, Optional<Integer>> {
+public class BuscaRfidSeTemPermissaoCommand implements BiFunction<Long, Integer, Optional<Long>> {
 
     private static final String SELECT_RFID =
             "SELECT usuario.rfid FROM usuario " +
@@ -27,14 +27,14 @@ public class BuscaRfidSeTemPermissaoCommand implements BiFunction<Integer, Integ
     }
 
     @Override
-    public Optional<Integer> apply(Integer rfid, Integer permissaoId) {
+    public Optional<Long> apply(Long rfid, Integer permissaoId) {
         Map<String, Object> parameters = new HashMap();
         parameters.put("rfid", rfid);
         parameters.put("permissaoId", permissaoId);
 
         try {
             return Optional.of(jdbcTemplate.queryForObject(SELECT_RFID, parameters,
-                    (rs, i) -> rs.getInt("rfid")));
+                    (rs, i) -> rs.getLong("rfid")));
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }

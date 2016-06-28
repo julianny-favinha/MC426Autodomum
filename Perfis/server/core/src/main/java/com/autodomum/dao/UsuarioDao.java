@@ -56,11 +56,11 @@ public class UsuarioDao {
         new EditarSenhaDeUsuarioCommand(jdbcTemplate).accept(username, novaSenha);
     }
 
-    public Optional<Integer> buscaRfidSeTemPermissao(int rfid) {
+    public Optional<Long> buscaRfidSeTemPermissao(Long rfid) {
         return new BuscaRfidSeTemPermissaoCommand(jdbcTemplate).apply(rfid, 3); //FIXME
     }
 
-	public List<String> BuscaUsuarioPorRfid(int rfid) {
+	public List<String> BuscaUsuarioPorRfid(Long rfid) {
 		return new BuscaUsuarioPorRfidCommand(jdbcTemplate).apply(rfid);
 	}
 }

@@ -25,7 +25,7 @@ public class RfidController {
     AudioService audioService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public DefaultResponse autentica(@RequestParam("rfid") int rfid) {
+    public DefaultResponse autentica(@RequestParam("rfid") Long rfid) {
     	if (usuarioService.autenticaRfid(rfid) == true){
     		String username = usuarioService.getUserbyRfid(rfid);
     		ComandoAudio comando = new ComandoAudio();

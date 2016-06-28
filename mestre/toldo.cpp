@@ -133,7 +133,7 @@ void Toldo::checaJardim(){
 
 void Toldo::registraHistoricoJardim(int chuva, float temperatura) {
   // Salvar Historico do Jardim
-  String data = "{\"estadoChuva:\":";
+  String data = "{\"estadoChuva\":";
   if(chuva == NENHUMA) {
       data.concat("\"SECO\"");
   } else if(chuva == POUCA) {
@@ -145,9 +145,12 @@ void Toldo::registraHistoricoJardim(int chuva, float temperatura) {
   data.concat(",\"temperatura\":");
   data.concat(temperatura);
   data.concat("}");
+
+  Serial.print("Registrar historico jardim: ");
+  Serial.println(data);
   
   String endpoint = "/jardim/historico";
-  
+
   servidor.post(endpoint, data);
 }
 

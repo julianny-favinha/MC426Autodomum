@@ -18,6 +18,8 @@
 //Vetor da conexão serial com o arduino do RFID
 int serNum[5];
 
+String rfidLido;
+
 Servidor servidor(HOST);
 
 //Toldos conectados ao Arduino
@@ -64,27 +66,34 @@ void loop() {
 }
 
 void rfid_checa(){
-  int rfid = 0;
+  String rfid = "";
   for (int i=0; i < 5; i++)
   {
-    rfid = rfid*10 + serNum[i];
+    rfid.concat(serNum[i]);
   }
-  
-  String endpoint = "/usuario/rfid?rfid=";
-  endpoint.concat(rfid);
-  
-  String response = servidor.get(endpoint);
-  StaticJsonBuffer<200> jsonBuffer;
-  JsonObject& root = jsonBuffer.parseObject(response);
-  
-  bool identificado = root["success"];
 
-  if(identificado){
-    digitalWrite(TAG_NAO_IDENTIFICADA, LOW);
-    digitalWrite(TAG_IDENTIFICADA, HIGH);
-  }else{
-    digitalWrite(TAG_IDENTIFICADA, LOW);
-    digitalWrite(TAG_NAO_IDENTIFICADA, HIGH);
+  Serial.print("RFID: ");
+  Serial.println(rfid);
+
+  if(rfidLido != rfid) {
+    String endpoint = "/usuario/rfid?rfid=";
+    endpoint.concat(rfid);
+    
+    String response = servidor.get(endpoint);
+    StaticJsonBuffer<200> jsonBuffer;
+    JsonObject& root = jsonBuffer.parseObject(response);
+    
+    bool identificado = root["sucesso"];
+    Serial.print("indentificado: ");
+    Serial.println(identificado);
+    if(identificado){
+      digitalWrite(TAG_NAO_IDENTIFICADA, LOW);
+      digitalWrite(TAG_IDENTIFICADA, HIGH);
+    }else{
+      digitalWrite(TAG_IDENTIFICADA, LOW);
+      digitalWrite(TAG_NAO_IDENTIFICADA, HIGH);
+    }
+    rfidLido = rfid;
   }
 }
 

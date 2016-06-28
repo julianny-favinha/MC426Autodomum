@@ -9,7 +9,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
-public class BuscaUsuarioPorRfidCommand implements Function<Integer , List<String>>  {
+public class BuscaUsuarioPorRfidCommand implements Function<Long , List<String>>  {
 	
 	 private static final String SELECT_USERNAME_RFID =
 	            "SELECT usuario.username FROM usuario "
@@ -22,7 +22,7 @@ public class BuscaUsuarioPorRfidCommand implements Function<Integer , List<Strin
 	    }
 
 		@Override
-		public List<String> apply(Integer rfid) {
+		public List<String> apply(Long rfid) {
 			Map<String, Object> parameters = new HashMap();
 			parameters.put("rfid", rfid);
 			

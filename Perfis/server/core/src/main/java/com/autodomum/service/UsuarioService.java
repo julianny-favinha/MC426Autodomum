@@ -62,7 +62,7 @@ public class UsuarioService {
         return true;
     }
 
-    public boolean autenticaRfid(int rfid) {
+    public boolean autenticaRfid(Long rfid) {
         return usuarioDao.buscaRfidSeTemPermissao(rfid).isPresent();
     }
 
@@ -80,7 +80,7 @@ public class UsuarioService {
         return true;
     }
 
-	public String getUserbyRfid(int rfid) {
+	public String getUserbyRfid(Long rfid) {
 		return usuarioDao.BuscaUsuarioPorRfid(rfid).get(0);
 	}
 }
