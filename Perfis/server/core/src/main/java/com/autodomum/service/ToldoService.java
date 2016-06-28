@@ -1,5 +1,6 @@
 package com.autodomum.service;
 
+import com.autodomum.aplicacao.notificacao.Notificacao;
 import com.autodomum.aplicacao.queue.AutodomumQueue;
 import com.autodomum.comandos.ComandoToldo;
 import com.autodomum.dao.ToldoDao;
@@ -26,10 +27,21 @@ public class ToldoService {
     }
 
     public Integer criarHistorico(HistoricoToldo historicoToldo) {
+    	if (historicoToldo.isEstendido()) {
+    		Notificacao.sendNotificaco("O toldo foi estendido!");
+    	} else {
+    		Notificacao.sendNotificaco("O toldo foi recolhido!");
+    	}
+    	
         return toldoDao.criarHistorico(historicoToldo);
     }
 
     public void enviarComando(ComandoToldo comando) {
+    	if (comando.getEstendido()) {
+    		Notificacao.sendNotificaco("O toldo foi estendido!");
+    	} else {
+    		Notificacao.sendNotificaco("O toldo foi recolhido!");
+    	}
         queue.send(comando);
     }
 }
