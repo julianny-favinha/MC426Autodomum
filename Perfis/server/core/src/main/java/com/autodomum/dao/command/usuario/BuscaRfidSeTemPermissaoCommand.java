@@ -17,7 +17,8 @@ public class BuscaRfidSeTemPermissaoCommand implements BiFunction<Integer, Integ
     private static final String SELECT_RFID =
             "SELECT usuario.rfid FROM usuario " +
             "JOIN usuario_permissoes up ON up.username_usuario = usuario.username " +
-            "WHERE usuario.rfid = :rfid AND up.id_permissao = :permissaoId";
+            "WHERE usuario.rfid = :rfid AND up.id_permissao = :permissaoId " +
+            "LIMIT 1";
 
     private NamedParameterJdbcTemplate jdbcTemplate;
 

@@ -158,7 +158,7 @@ void Toldo::registrarHistorico() {
   } else {
     data.concat("\"false\"");
   }
-  data.concat(", \"automatico\" : \"");
+  data.concat(", \"automatico\" : ");
   if(automatico) {
     data.concat("\"true\"");
   } else {
