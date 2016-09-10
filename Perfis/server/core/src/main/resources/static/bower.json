@@ -6,8 +6,8 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "angular": "~1.4.0",
-    "angular-route": "~1.4.0",
+    "angular": "~1.5.7",
+    "angular-route": "~1.4.12",
     "angular-loader": "~1.4.0",
     "angular-mocks": "~1.4.0",
     "html5-boilerplate": "~5.2.0",
@@ -18,6 +18,9 @@
     "font-awesome": "~4.6.2",
     "angular-i18n": "1.5.6-build.4796+sha.eebbca0",
     "angular-loading-bar": "0.9.0",
-    "angular-animate":"v1.5.6"
+    "angular-animate": "v1.5.6"
+  },
+  "resolutions": {
+    "angular": "1.4.12"
   }
 }
